@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header__logo {
+    color:#0a55eb;
+    font-size:30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header__item-link {
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 50px;
+    cursor: pointer;
+}
