@@ -12,4 +12,11 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::with(['prefecture', 'genre'])->get();
         return view('index', compact('restaurants'));
     }
+
+    //飲食店詳細ページ表示
+    public function detail()
+    {
+        $restaurants = Restaurant::with(['prefecture', 'genre'])->get();
+        return view('detail', compact('restaurants'));
+    }
 }
