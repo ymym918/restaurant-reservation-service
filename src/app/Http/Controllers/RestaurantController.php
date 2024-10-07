@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     //飲食店詳細ページ表示
     public function detail($restaurant_id)
     {
-        $restaurant = Restaurant::findOrFail($restaurant_id);
-        return view('restaurant.detail', compact('restaurant'));
+        $restaurant = Restaurant::find($restaurant_id);
+        return view('detail', compact('restaurant'));
     }
 }

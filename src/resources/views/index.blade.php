@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
@@ -27,32 +27,33 @@
     </header>
 
     <main>
-                <div class="grid-container">
+        <div class="grid-container">
             @foreach($restaurants as $restaurant)
-                <div class="card">
-                    <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
-                    <div class="card-info">
-                        <h2>{{ $restaurant->name }}</h2>
-                        <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
-                        <a href="#" class="view-details">詳しく見る</a>
-                        <span class="favorite" onclick="toggleFavorite(this)">&#x2661;</span>
-                    </div>
-
-                    <script>
-                        function toggleFavorite(element) {
-                            element.classList.toggle('active');
-                            // ハートの中身を切り替え (塗りつぶし or 空)
-        if (element.classList.contains('active')) {
-            element.innerHTML = '&#x2665;'; // 塗りつぶしのハート (赤)
-        } else {
-            element.innerHTML = '&#x2661;'; // 空のハート (グレー)
-        }
-                        }
-                    </script>
+            <div class="card">
+                <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
+                <div class="card-info">
+                    <h2>{{ $restaurant->name }}</h2>
+                    <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
+                    <a href="{{ route('restaurant.detail', $restaurant->id) }}" >詳しく見る</a>
+                    <span class="favorite" onclick="toggleFavorite(this)">&#x2661;</span>
                 </div>
+
+                <script>
+                    function toggleFavorite(element) {
+                        element.classList.toggle('active');
+                        // ハートの中身を切り替え (塗りつぶし or 空)
+                        if (element.classList.contains('active')) {
+                            element.innerHTML = '&#x2665;'; // 塗りつぶしのハート (赤)
+                        } else {
+                            element.innerHTML = '&#x2661;'; // 空のハート (グレー)
+                        }
+                    }
+                </script>
+            </div>
             @endforeach
         </div>
     </main>
 </body>
+
 </html>
 @endsection

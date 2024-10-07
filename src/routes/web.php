@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 
 //飲食店ページ表示
-Route::get('/', [RestaurantController::class, 'index']);
+Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
+
 
 //飲食店詳細ページ表示
-Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail']);
+Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('restaurant.detail');
