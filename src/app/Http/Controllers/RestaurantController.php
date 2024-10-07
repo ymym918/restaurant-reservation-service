@@ -14,9 +14,9 @@ class RestaurantController extends Controller
     }
 
     //飲食店詳細ページ表示
-    public function detail()
+    public function detail($restaurant_id)
     {
-        $restaurants = Restaurant::with(['prefecture', 'genre'])->get();
-        return view('detail', compact('restaurants'));
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        return view('restaurant.detail', compact('restaurant'));
     }
 }
