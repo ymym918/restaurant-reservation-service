@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
 @section('content')
 <div class="restaurant-detail">
-    <a href="{{ route('restaurant.index') }}">戻る</a>
-    <h2>{{ $restaurant->name }}</h2>
+    <div class="restaurant-detail-header">
+        <a href="{{ route('restaurant.index') }}">＜</a>
+        <h2>{{ $restaurant->name }}</h2>
+    </div>
     <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
     <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
     <p>{{ $restaurant->description }}</p>
