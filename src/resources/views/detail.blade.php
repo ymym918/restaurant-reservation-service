@@ -4,41 +4,67 @@
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
+<body>
+{{-- 飲食店詳細ページ部分 --}}
 @section('content')
-<div class="restaurant-detail">
-    <div class="restaurant-detail-header">
-        <a href="{{ route('restaurant.index') }}">＜</a>
-        <h2>{{ $restaurant->name }}</h2>
-    </div>
+<main class="main-content">
+    <a href="{{ route('restaurant.index') }}">＜</a>
+    <h2>{{ $restaurant->name }}</h2>
     <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
     <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
     <p>{{ $restaurant->description }}</p>
+</main>
+{{-- 予約フォーム --}}
+<div class="reservation-form">
+    <h2>予約</h2>
+    <form action="{{ route('reservations.store') }}" method="POST" >
+    @csrf
+    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+    {{-- 予約年月日 --}}
+    <label for="date"></label>
+    <input type="date" id="date" name="date" required>
+    {{-- 予約時間 --}}
+    <label for="time"></label>
+    <select id="time" name="time" required>
+        <option value="11:00">11:00</option>
+        <option value="12:00">12:00</option>
+        <option value="13:00">13:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+        <option value="18:00">18:00</option>
+        <option value="19:00">19:00</option>
+        <option value="20:00">20:00</option>
+        <option value="21:00">21:00</option>
+    </select>
+    {{-- 予約人数 --}}
+    <label for="number"></label>
+    <select id="number" name="number" required>
+        <option value="1">1人</option>
+        <option value="2">2人</option>
+        <option value="3">3人</option>
+        <option value="4">4人</option>
+        <option value="5">5人</option>
+        <option value="6">6人</option>
+        <option value="7">7人</option>
+        <option value="8">8人</option>
+        <option value="9">9人</option>
+        <option value="10">10人</option>
+        <option value="11">10人以上</option>
+    </select>
+{{-- 予約確認情報 --}}
+    <div class="reservation-summary">
+                    <p>Shop{{ $restaurant->name }}</p>
+                    <p>Date: <span id="selected-date"></span></p>
+                    <p>Time: <span id="selected-time"></span></p>
+                    <p>Number: <span id="selected-number"></span></p>
+                </div>
+    <button type="submit">予約する</button>
+    </form>
+    </div>
 </div>
+</body>
+
 @endsection
 
-    {{-- <div class="reservation-form">
-        <h3>予約</h3>
-        <form action="{{ route('reservation.store') }}" method="POST">
-            @csrf
-            <label for="date">日付:</label>
-            <input type="date" name="date" id="date" required>
-
-            <label for="time">時間:</label>
-            <select name="time" id="time" required>
-                <option value="17:00">17:00</option>
-                <option value="18:00">18:00</option>
-                <!-- 他の時間も追加 -->
-            </select>
-
-            <label for="people">人数:</label>
-            <select name="people" id="people" required>
-                <option value="1">1人</option>
-                <option value="2">2人</option>
-                <!-- 他の人数も追加 -->
-            </select>
-
-            <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-
-            <button type="submit">予約する</button>
-        </form> --}}
-    {{-- </div> --}}
