@@ -15,21 +15,21 @@ class PrefecturesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'name' => '東京',
+            'name' => '東京都',
             'created_at' => now(),
             'updated_at' => now(),
         ];
         DB::table('prefectures')->insert($param);
 
         $param = [
-            'name' => '大阪',
+            'name' => '大阪府',
             'created_at' => now(),
             'updated_at' => now(),
         ];
         DB::table('prefectures')->insert($param);
 
         $param = [
-            'name' => '福岡',
+            'name' => '福岡県',
             'created_at' => now(),
             'updated_at' => now(),
         ];

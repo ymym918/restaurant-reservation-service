@@ -235,3 +235,4 @@ class RestaurantsTableSeeder extends Seeder
         DB::table('restaurants')->insert($param);
     }
 }
+
