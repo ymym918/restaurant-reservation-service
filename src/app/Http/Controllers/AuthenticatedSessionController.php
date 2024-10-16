@@ -26,10 +26,15 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         auth()->logout();
-        return redirect('/login');
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     public function index()

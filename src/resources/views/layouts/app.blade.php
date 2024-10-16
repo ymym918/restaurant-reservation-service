@@ -20,7 +20,8 @@
                 </a>
                 <nav>
                     <ul class="header-nav">
-                        @if (Auth::check())
+                        @auth
+                <!-- ログインしている場合に表示されるメニュー -->
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/">Home</a>
                         </li>
@@ -30,10 +31,23 @@
                                 <button class="header-nav__button">Logout</button>
                             </form>
                         </li>
-                        @endif
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/mypage">Mypage</a>
                         </li>
+                        @endauth
+
+                        @guest
+                        <!-- ゲスト（ログインしていない場合）に表示されるメニュー -->
+                        <li class="header-nav__item">
+                            <a class="header-nav__link" href="/">Home</a>
+                        </li>
+                        <li class="header-nav__item">
+                            <a class="header-nav__link" href="/registration">Registration</a>
+                        </li>
+                        <li class="header-nav__item">
+                            <a class="header-nav__link" href="/login">Login</a>
+                        </li>
+                        @endguest
                     </ul>
                 </nav>
             </div>

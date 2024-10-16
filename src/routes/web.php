@@ -13,13 +13,8 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 // ログイン処理（認証不要）
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
-//飲食店ページ表示
-Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
-
-// ログイン後に表示するトップページ
-Route::middleware('auth')->group(function () {
-    Route::get('/', [AuthenticatedSessionController::class, 'index'])->name('restaurant.index');
-});
+//飲食店ページ表示（認証不要）
+Route::get('/', [AuthenticatedSessionController::class, 'index']);
 
 //飲食店詳細ページ表示
 Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('restaurant.detail');
