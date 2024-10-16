@@ -20,14 +20,17 @@
                 </a>
                 <nav>
                     <ul class="header-nav">
+                        @if (Auth::check())
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/">Home</a>
                         </li>
                         <li class="header-nav__item">
-                            <form>
+                            <form class="form" action="/logout" method="post">
+                                @csrf
                                 <button class="header-nav__button">Logout</button>
                             </form>
                         </li>
+                        @endif
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/mypage">Mypage</a>
                         </li>
