@@ -14,12 +14,14 @@
     <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
     <p>{{ $restaurant->description }}</p>
 </main>
+
 {{-- 予約フォーム --}}
 <div class="reservation-form">
     <h2>予約</h2>
     <form action="{{ route('reservations.store') }}" method="POST" >
     @csrf
     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+
     {{-- 予約年月日 --}}
     <label for="date"></label>
     <input type="date" id="date" name="date" required>
@@ -53,18 +55,22 @@
         <option value="10">10人</option>
         <option value="11">10人以上</option>
     </select>
-{{-- 予約確認情報 --}}
+
+{{-- 確認セクション--}}
     <div class="reservation-summary">
-                    <p>Shop{{ $restaurant->name }}</p>
-                    <p>Date: <span id="selected-date"></span></p>
-                    <p>Time: <span id="selected-time"></span></p>
-                    <p>Number: <span id="selected-number"></span></p>
-                </div>
+        <div id="confirmation_section">
+        <p>Shop{{ $restaurant->name }}</p>
+        <p id="confirm_date">Date </p>
+        <p id="confirm_time">Time </p>
+        <p id="confirm_people">Number </p>
+    </div>
     <button type="submit">予約する</button>
     </form>
     </div>
 </div>
 </body>
 
+{{-- <!-- 外部JavaScriptファイルの読み込み -->
+    <script src="{{ asset('js/reservation.js') }}"></script> --}}
 @endsection
 

@@ -10,7 +10,7 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'restaurant_id',
         'reservation_date',
         'reservation_time',
@@ -18,9 +18,9 @@ class Reservation extends Model
     ];
 
     // 関連付け: ユーザー
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
+    // public function user() {
+    //     return $this->belongsTo(User::class);
+    // }
 
     // 関連付け: レストラン
     public function restaurant() {

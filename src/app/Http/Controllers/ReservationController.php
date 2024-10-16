@@ -17,7 +17,7 @@ class ReservationController extends Controller
 
         // 新しい予約を作成
         Reservation::create([
-            'user_id' => auth()->id(),
+            // 'user_id' => auth()->id(),
             'restaurant_id' => $request->restaurant_id,
             'reservation_date' => $validatedData['reservation_date'],
             'reservation_time' => $validatedData['reservation_time'],
