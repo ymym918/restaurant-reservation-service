@@ -11,14 +11,14 @@
     </span>
 </div>
 
-<form class="form__wrap" action="/register" method="post">
+<form action="{{ route('register') }}" method="post">
     @csrf
     <div class="form__content">
         <div class="form__item">
             <input class="form__input" type="text" name="name" placeholder="Username" value="{{ old('name') }}" />
         </div>
         <div class="form__error">
-            @error('email')
+            @error('name')
             {{ $message }}
             @enderror
         </div>
@@ -38,7 +38,7 @@
             <input class="form__input" type="password" name="password" placeholder="Password">
         </div>
         <div class="form__error">
-            @error('email')
+            @error('password')
             {{ $message }}
             @enderror
         </div>

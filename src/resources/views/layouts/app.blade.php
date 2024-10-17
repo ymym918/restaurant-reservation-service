@@ -42,7 +42,7 @@
                             <a class="header-nav__link" href="/">Home</a>
                         </li>
                         <li class="header-nav__item">
-                            <a class="header-nav__link" href="/registration">Registration</a>
+                            <a class="header-nav__link" href="/register">Registration</a>
                         </li>
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/login">Login</a>
