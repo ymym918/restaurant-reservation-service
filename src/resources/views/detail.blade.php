@@ -18,16 +18,16 @@
 {{-- 予約フォーム --}}
 <div class="reservation-form">
     <h2>予約</h2>
-    <form action="{{ route('reservations.store') }}" method="POST" >
+    <form action="{{ route('reservations.store') }}" method="post" >
     @csrf
     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
 
     {{-- 予約年月日 --}}
     <label for="date"></label>
-    <input type="date" id="date" name="date" required>
+    <input type="date" id="date" name="reservation_date" required>
     {{-- 予約時間 --}}
     <label for="time"></label>
-    <select id="time" name="time" required>
+    <select id="time" name="reservation_time" required>
         <option value="11:00">11:00</option>
         <option value="12:00">12:00</option>
         <option value="13:00">13:00</option>
@@ -42,7 +42,7 @@
     </select>
     {{-- 予約人数 --}}
     <label for="number"></label>
-    <select id="number" name="number" required>
+    <select id="number" name="number_of_people" required>
         <option value="1">1人</option>
         <option value="2">2人</option>
         <option value="3">3人</option>

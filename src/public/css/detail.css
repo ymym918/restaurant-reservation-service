@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #f5f5f5;
 }
@@ -11,8 +17,11 @@ body {
 .content-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
+    max-width: 1200px; /* 全体の最大幅を設定 */
     padding: 40px;
+    margin: 0 auto; /* 中央揃え */
 }
 
 /* メインコンテンツ */
@@ -47,9 +56,11 @@ h2 {
 
 /* お店の画像 */
 .restaurant-image {
-    width: 80%;
+    width: 100%; /* 幅を100%に設定 */
     height: auto;
-    margin-bottom: 30px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 5px; /* 角を丸く */
 }
 
 /* #タグ */
@@ -62,8 +73,9 @@ h2 {
 .reservation-form {
     background-color: #3b82f6;
     padding: 40px;
-    width: 300px;
+    width: 350px; /* フォームの幅を拡大 */
     color: white;
+    border-radius: 10px; /* 角を丸く */
 }
 
 .reservation-form h2 {
@@ -110,4 +122,22 @@ button {
 
 button:hover {
     background-color: #2563eb;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column; /* 縦並びに変更 */
+        align-items: center; /* 中央揃え */
+    }
+
+    .main-content {
+        margin-right: 0;
+        margin-bottom: 20px; /* 下にマージンを追加 */
+    }
+
+    .reservation-form {
+        width: 100%; /* フォームの幅を100%に */
+        max-width: 400px; /* 最大幅を設定 */
+    }
 }
