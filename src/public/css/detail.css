@@ -4,37 +4,32 @@
     box-sizing: border-box;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    padding-left: 1cm
 }
 
 .content-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
-    max-width: 1200px; /* 全体の最大幅を設定 */
+    width: 80%; /* ページ幅の80%を使用 */
+    cursor: pointer;
     padding: 40px;
-    margin: 0 auto; /* 中央揃え */
 }
 
 /* メインコンテンツ */
 .main-content {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 40px; /* 予約フォームとの間にスペースを追加 */
 }
 
 .main-content a {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #000000;
+    color: #000;
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
@@ -51,20 +46,18 @@ h2 {
     font-size: 2.0rem;
     font-weight: bold;
     margin-bottom: 27px;
-    margin-left: 23px;
 }
 
 /* お店の画像 */
-.restaurant-image {
-    width: 100%; /* 幅を100%に設定 */
-    height: auto;
+img {
+    width: 600px; /* 固定幅 */
+    height: auto; /* 比率を維持 */
     object-fit: cover;
-    margin-bottom: 20px;
-    border-radius: 5px; /* 角を丸く */
+    margin-bottom: 25px;
 }
 
 /* #タグ */
-.restaurant-info p {
+p {
     font-size: 1.1rem;
     margin-bottom: 27px;
 }
@@ -72,10 +65,11 @@ h2 {
 /* 予約フォーム */
 .reservation-form {
     background-color: #3b82f6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     padding: 40px;
-    width: 350px; /* フォームの幅を拡大 */
+    width: 550px; /* フォームの幅を拡大 */
     color: white;
-    border-radius: 10px; /* 角を丸く */
+    border-radius: 6px; /* 角を丸く */
 }
 
 .reservation-form h2 {
@@ -122,22 +116,4 @@ button {
 
 button:hover {
     background-color: #2563eb;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column; /* 縦並びに変更 */
-        align-items: center; /* 中央揃え */
-    }
-
-    .main-content {
-        margin-right: 0;
-        margin-bottom: 20px; /* 下にマージンを追加 */
-    }
-
-    .reservation-form {
-        width: 100%; /* フォームの幅を100%に */
-        max-width: 400px; /* 最大幅を設定 */
-    }
 }
