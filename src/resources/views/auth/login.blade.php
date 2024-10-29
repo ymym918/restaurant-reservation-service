@@ -38,4 +38,5 @@
             <button class="form__input form__input-button" type="submit">ログイン</button>
         </div>
     </form>
+
 @endsection

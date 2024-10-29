@@ -20,8 +20,8 @@
                 </a>
                 <nav>
                     <ul class="header-nav">
-                        @auth
-                <!-- ログインしている場合に表示されるメニュー -->
+                    <!-- ログイン後に表示されるメニュー -->
+                        @if (Auth::check())
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/">Home</a>
                         </li>

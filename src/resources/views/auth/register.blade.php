@@ -47,4 +47,5 @@
         <button class="form__input form__input-button" type="submit">登録</button>
     </div>
 </form>
+
 @endsection
