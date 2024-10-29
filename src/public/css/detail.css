@@ -39,8 +39,8 @@ body {
     text-decoration: none;
     background-color: #fff;
     border-radius: 5px;
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     margin-top: -30px;
     margin-bottom: 25px;
@@ -51,7 +51,7 @@ body {
     font-size: 1.9rem;
     margin-top: -30px;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 /* お店の画像 */
@@ -64,7 +64,7 @@ body {
 
 /* お店のエリア・ジャンルのハッシュタグ */
 .main-content p {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     margin-bottom: 27px;
 }
 
@@ -86,7 +86,7 @@ body {
 .reservation-form h2 {
     font-size: 25px;
     margin-top: -5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .reservation-form label {
@@ -130,11 +130,27 @@ body {
 
 /* 予約フォームの確認項目 */
 .reservation-summary {
-    width: 530px;
+    height:190px;
+    width: 500px;
     background-color: rgba(255, 255, 255, 0.2);
     margin-top: -410px;
     padding: 25px;
     border-radius: 5px;
+}
+
+.reservation-summary p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* 各項目ごとの余白 */
+}
+
+.reservation-summary label {
+    display: inline-block;
+    width: 80px; /* ラベルの幅を固定 */
+}
+
+.confirmation-spacing {
+    margin-left: 7px; /* ラベルと入力内容の間の余白 */
 }
 
 /* 「予約する」ボタン */

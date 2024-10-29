@@ -64,11 +64,10 @@
                 </div>
                 {{-- 確認セクション--}}
                 <div class="reservation-summary">
-                        <p>Shop{{ $restaurant->name }}</p>
-                        <p id="confirm_date" class="confirmation-spacing">Date </p>
-                        <p id="confirm_time" class="confirmation-spacing">Time </p>
-                        <p id="confirm_people" class="confirmation-spacing">Number </p>
-                    </div>
+                    <p><label for="shop_name">Shop</label>{{ $restaurant->name }}</p>
+                    <p><label for="confirm_date">Date</label><span id="confirm_date" class="confirmation-spacing"></span></p>
+                    <p><label for="confirm_time">Time</label><span id="confirm_time" class="confirmation-spacing"></span></p>
+                    <p><label for="confirm_people">Number</label><span id="confirm_people" class="confirmation-spacing"></span></p>
                 </div>
                 </form>
             </div>
@@ -76,28 +75,29 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 要素を取得
-            const reservationDate = document.getElementById('reservation_date');
-            const reservationTime = document.getElementById('time');
-            const numberOfPeople = document.getElementById('number_of_people');
+    document.addEventListener('DOMContentLoaded', function() {
+    // 要素を取得
+    const reservationDate = document.getElementById('reservation_date');
+    const reservationTime = document.getElementById('time');
+    const numberOfPeople = document.getElementById('number_of_people');
 
-            // 確認セクションの要素を取得
-            const confirmDate = document.getElementById('confirm_date');
-            const confirmTime = document.getElementById('confirm_time');
-            const confirmPeople = document.getElementById('confirm_people');
+    // 確認セクションの要素を取得
+    const confirmDate = document.getElementById('confirm_date');
+    const confirmTime = document.getElementById('confirm_time');
+    const confirmPeople = document.getElementById('confirm_people');
 
-            // イベントリスナーを追加して動的に更新
-            reservationDate.addEventListener('change', function() {
-                confirmDate.textContent = 'Date' + reservationDate.value;
-            });
-            reservationTime.addEventListener('change', function() {
-                confirmTime.textContent = 'Time' + reservationTime.value;
-            });
-            numberOfPeople.addEventListener('change', function() {
-    confirmPeople.textContent = 'Number' + numberOfPeople.value + '人';
+    // イベントリスナーを追加して動的に更新
+    reservationDate.addEventListener('change', function() {
+        confirmDate.textContent = reservationDate.value;
+    });
+    reservationTime.addEventListener('change', function() {
+        confirmTime.textContent = reservationTime.value;
+    });
+    numberOfPeople.addEventListener('change', function() {
+        confirmPeople.textContent = numberOfPeople.value + '人';
+    });
 });
-        });
     </script>
 </body>
+
 @endsection
