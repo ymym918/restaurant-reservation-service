@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -16,7 +17,13 @@ class RestaurantController extends Controller
     //飲食店詳細ページ表示
     public function detail($restaurant_id)
     {
-        $restaurant = Restaurant::find($restaurant_id);
-        return view('detail', compact('restaurant'));
+        // 認証されていないユーザーの場合
+        if (!Auth::check()) {
+            return redirect()->route('register'); // 会員登録画面にリダイレクト
+        }
+
+        // 認証されている場合のロジック
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        return view('restaurants.detail', compact('restaurant'));
     }
 }

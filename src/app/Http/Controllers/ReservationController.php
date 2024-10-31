@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-public function store(Request $request)
+    public function store(Request $request)
 {
     // ログインユーザーIDを取得
     $userId = auth()->id();
