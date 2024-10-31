@@ -5,9 +5,18 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
-// 会員登録後のサンクスページ表示
-Route::get('/thanks', function () {return view('thanks');})->name('thanks');
+// 会員登録ページ表示
+Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->name('register');
+
+// 会員登録情報の保存
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+//サンクスページ表示
+Route::get('/thanks', function () {
+    return view('thanks');})->name('thanks');
 
 //飲食店ページ表示
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');

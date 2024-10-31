@@ -8,9 +8,10 @@
 <body>
     <main>
         <div class="thanks__content">
-            <h3>会員登録ありがとうございます</h3>
-            <a class="text-center" href="/rogin">
-                <button class="form__button-submit" type="submit">ログインする</button>
+            <p>会員登録ありがとうございます</p>
+            <a class="text-center" href="/login">
+                <button class="button-submit" type="button">ログインする</button>
+            </a>
             </a>
         </div>
     </main>

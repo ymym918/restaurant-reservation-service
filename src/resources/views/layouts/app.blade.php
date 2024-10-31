@@ -34,9 +34,7 @@
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/mypage">Mypage</a>
                         </li>
-                        @endauth
-
-                        @guest
+                        @else
                         <!-- ゲスト（ログインしていない場合）に表示されるメニュー -->
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/">Home</a>
@@ -47,7 +45,7 @@
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="/login">Login</a>
                         </li>
-                        @endguest
+                        @endif
                     </ul>
                 </nav>
             </div>

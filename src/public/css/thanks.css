@@ -3,16 +3,23 @@
     text-align: center;
     padding: 30px 15px;
     max-width: 1000px;
-    color: #8A7869;
+}
+
+.thanks__content p {
+    font-size: 23px;
+    margin-top: 30px;
 }
 
 
-.form__button-submit {
-    padding: 10px;
-    width: 100px;
+.button-submit {
+    padding: 7px;
+    width: 130px;
     height: 35px;
     border: none;
-    background: #827469;
+    border-radius: 5px;
+    background: rgb(38, 81, 207);
     color: #fff;
     cursor: pointer;
+    font-size: 15px;
+    margin-top: 45px;
 }

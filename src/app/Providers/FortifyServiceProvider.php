@@ -3,18 +3,18 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Contracts\LogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -23,13 +23,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //ログアウト後の遷移先をログイン画面に設定
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
-            public function toResponse($request)
-            {
-                return redirect('/login');
-            }
-        });
+        //
     }
 
     /**
@@ -37,9 +31,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // 会員登録ページの表示
+        // 会員登録時のユーザー作成処理を定義
         Fortify::createUsersUsing(CreateNewUser::class);
 
+        // 会員登録ページの表示
         Fortify::registerView(function () {
             return view('auth.register');
         });
