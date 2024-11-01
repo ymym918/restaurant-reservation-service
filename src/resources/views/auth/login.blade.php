@@ -26,8 +26,8 @@
                 <span class="error__message">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form__item password__wrap">
-            <input class="form__input password__input" type="password" name="password" placeholder="PassWord">
+        <div class="form__item">
+            <input class="form__input password__input" type="password" name="password" placeholder="Password">
         </div>
         <div class="error__item">
             @error('password')
@@ -35,7 +35,7 @@
             @enderror
             </div>
         <div class="form__item form__item-button">
-            <button class="form__input form__input-button" type="submit">ログイン</button>
+            <button class="form__input-button" type="submit">ログイン</button>
         </div>
     </form>
 

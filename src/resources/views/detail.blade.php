@@ -22,7 +22,7 @@
         {{-- 予約フォーム --}}
             <div class="reservation-form">
                 <h2>予約</h2>
-                <form action="{{ route('reservations.store') }}" method="post" >
+                <form action="{{ route('reservation.store') }}" method="post" >
                 @csrf
                 <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                 {{-- 予約年月日 --}}

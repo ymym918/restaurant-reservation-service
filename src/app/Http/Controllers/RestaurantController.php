@@ -24,6 +24,6 @@ class RestaurantController extends Controller
 
         // 認証されている場合のロジック
         $restaurant = Restaurant::findOrFail($restaurant_id);
-        return view('restaurants.detail', compact('restaurant'));
+        return view('detail', compact('restaurant'));
     }
 }

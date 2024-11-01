@@ -13,7 +13,7 @@
 
 <form action="{{ route('register') }}" method="post">
     @csrf
-    <div class="form__content">
+    <div class="form__wrap">
         <div class="form__item">
             <input class="form__input" type="text" name="name" placeholder="Username" value="{{ old('name') }}" />
         </div>
@@ -22,19 +22,15 @@
             {{ $message }}
             @enderror
         </div>
-    </div>
-    <div class="form__content">
-            <div class="form__item">
-                <input class="form__input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-            </div>
-            <div class="form__error">
-                @error('email')
-                {{ $message }}
-                @enderror
-            </div>
+        <div class="form__item">
+            <input class="form__input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
         </div>
-        <div class="form__content">
-            <div class="form__item">
+        <div class="form__error">
+            @error('email')
+            {{ $message }}
+            @enderror
+        </div>
+        <div class="form__item">
             <input class="form__input" type="password" name="password" placeholder="Password">
         </div>
         <div class="form__error">
@@ -42,9 +38,9 @@
             {{ $message }}
             @enderror
         </div>
-    </div>
-    <div class="form__item form__item-button">
+            <div class="form__item form__item-button">
         <button class="form__input form__input-button" type="submit">登録</button>
+    </div>
     </div>
 </form>
 

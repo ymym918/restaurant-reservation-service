@@ -15,8 +15,7 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 //サンクスページ表示
-Route::get('/thanks', function () {
-    return view('thanks');})->name('thanks');
+Route::get('/thanks', function () {return view('thanks');})->name('thanks');
 
 //飲食店ページ表示
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
@@ -25,4 +24,9 @@ Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index'
 Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('restaurant.detail');
 
 //予約フォームから送信されたデータの保存
-Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
+
+//予約完了後、予約完了ページ表示
+Route::get('/done',[ReservationController::class, 'index'])
+->name('done.index');
+
