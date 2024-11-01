@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -21,7 +20,12 @@ class ReservationController extends Controller
             'number_of_people' => $request->number_of_people,
         ]);
 
-        // 予約完了ページにリダイレクト
-        return redirect()->route('done.index');
+        // 予約完了ページへリダイレクト
+        return redirect()->route('reservation.complete');
+    }
+
+    public function complete()
+    {
+        return view('reservation.complete');
     }
 }
