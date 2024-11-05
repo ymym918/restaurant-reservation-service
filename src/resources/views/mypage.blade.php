@@ -1,59 +1,43 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
 @section('content')
+<body>
     <div class="header__wrap">
         <p class="header__text">
-            {{ \Auth::user()->name }}さんお疲れ様です！
+            {{ \Auth::user()->name }}さん
         </p>
     </div>
+    <main>
+        <div class="content-wrapper">
+        {{-- 予約状況 --}}
+            <div class="reservation-status">
+                    <p><label for="shop_name">Shop</label>{{ $restaurant->name }}</p>
+                    <p><label for="reservation_date">Date</label><span id="confirm_date"
+                        class="reservation-spacing"></span></p>
+                    <p><label for="reservation_time">Time</label><span id="reservation_time" class="reservation-spacing"></span></p>
+                    <p><label for="reservation_people">Number</label><span id="reservation_people" class="creservation-spacing"></span></p>
+                </div>
+            </div>
 
-@if (session('error'))
-    <div class="alert_danger">
-        {{ session('error') }}
-    </div>
-@endif
-
-<body>
-<div class="container">
-    {{-- 勤務開始 --}}
-    <form class="form__work" action="{{route('work.start')}}" method="post">
-        @csrf
-        <div class="form__item">
-            <button class="form__item-button" type="submit" name="start_work">勤務開始
-            </button>
-        </div>
-    </form>
-
-    {{-- 勤務終了 --}}
-    <form class="form__work" action="{{route('work.end')}}" method="post">
-        @csrf
-        <div class="form__item">
-            <button class="form__item-button" type="submit" name="end_work">勤務終了
-            </button>
-        </div>
-    </form>
-
-    {{-- 休憩開始 --}}
-    <form class="form__start-rest" action="{{route('rest.start')}}" method="post">
-        @csrf
-        <div class="form__item">
-            <button class="form__item-button" type="submit" name="start_work">休憩開始
-            </button>
-        </div>
-    </form>
-
-    {{-- 休憩終了 --}}
-    <form class="form__end-rest" action="{{route('rest.end')}}" method="post">
-        @csrf
-        <div class="form__item">
-            <button class="form__item-button" type="submit" name="end_rest">休憩終了
-            </button>
-        </div>
-    </form>
-</div>
+        {{-- お気に入り店舗 --}}
+            <div class="favorite-restaurant">
+                <p>お気に入り店舗</p>
+            </div>
+                <div class="grid-container">
+                    <div class="card">
+                        <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
+                        <div class="card-info">
+                            <h2>{{ $restaurant->name }}</h2>
+                            <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
+                            <a href="{{ route('restaurant.detail', $restaurant->id) }}" >詳しく見る</a>
+                            <span class="favorite" onclick="toggleFavorite(this)">&#x2661;</span>
+                        </div>
+                    </div>
+    </main>
 </body>
+
 @endsection
