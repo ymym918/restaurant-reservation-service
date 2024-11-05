@@ -17,11 +17,6 @@ class Reservation extends Model
         'number_of_people',
     ];
 
-    // 関連付け: ユーザー
-    // public function user() {
-    //     return $this->belongsTo(User::class);
-    // }
-
     // 関連付け: レストラン
     public function restaurant() {
         return $this->belongsTo(Restaurant::class);
