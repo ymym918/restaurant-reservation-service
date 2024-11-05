@@ -6,6 +6,7 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MyPageController;
 
 // 会員登録ページ表示
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -27,4 +28,9 @@ Route::post('/reservation', [ReservationController::class, 'store'])->name('rese
 
 //予約完了後、予約完了ページ表示
 Route::get('/done',[ReservationController::class, 'complete'])->name('reservation.complete');
+
+// マイページ表示
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage.index');
+});
 
