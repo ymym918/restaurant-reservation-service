@@ -19,4 +19,16 @@ class MyPageController extends Controller
         // ビューに変数を渡す
         return view('mypage', compact('user', 'reservations'));
     }
+
+    public function destroy(Reservation $reservation)
+    {
+        // 予約がログインユーザーのものであるか確認
+        if ($reservation->user_id == Auth::id()) {
+            // 予約を削除
+            $reservation->delete();
+        }
+
+        // 予約削除後、マイページにリダイレクト
+        return redirect()->route('mypage')->with('success', '予約を削除しました。');
+    }
 }

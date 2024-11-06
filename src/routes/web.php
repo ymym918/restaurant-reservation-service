@@ -31,6 +31,9 @@ Route::get('/done',[ReservationController::class, 'complete'])->name('reservatio
 
 // マイページ表示
 Route::middleware('auth')->group(function () {
-    Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage.index');
+    Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
 });
+
+// 飲食店予約情報を削除
+Route::delete('/reservation/{reservation}', [MyPageController::class, 'destroy'])->name('reservation.destroy');
 
