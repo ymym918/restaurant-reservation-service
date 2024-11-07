@@ -30,8 +30,8 @@
                 <div class="reservations">
                     @foreach ($reservations as $reservation)
                         <div class="reservation-card">
-                            <div class="reservation-number">
-                                <!-- 時計アイコンと予約番号の表示 -->
+                            <!-- 時計アイコンと予約番号の表示 -->
+                            <div class=reservation-title>
                                 <i class="fas fa-clock"></i>
                                 <p>予約{{ $loop->iteration }}</p>
                                 <!-- 予約削除ボタン -->
@@ -40,21 +40,22 @@
                                     @method('DELETE')
                                     <button type="submit" class="delete-button" aria-label="削除">×</button>
                                 </form>
-                                <!-- 削除前の確認モーダルウィンドウ -->
-                                <div id="confirmModal" class="modal">
-                                    <div class="modal-content">
-                                        <p>本当に予約を削除してよろしいですか？</p>
-                                        <div class="modal-buttons">
-                                            <button id="confirmYes" class="btn btn-danger">削除</button>
-                                            <button id="confirmNo" class="btn btn-secondary">キャンセル</button>
-                                        </div>
-                                    </div>
                             </div>
                             <!-- 予約情報の表示 -->
                             <p><span class="label">Shop</span> <span class="data-shop">{{$reservation->restaurant->name }}</span></p>
                             <p><span class="label">Date</span> <span class="data">{{ $reservation->reservation_date }}</span></p>
-                            <p><span class="label">Time</span> <span class="data">{{ $reservation->reservation_time }}</span></p>
+                            <p><span class="label">Time</span> <span class="data">{{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}</span></p>
                             <p><span class="label">Number</span> <span class="data-number">{{ $reservation->number_of_people }}人</span></p>
+                        </div>
+                        <!-- 削除前の確認モーダルウィンドウ -->
+                        <div id="confirmModal" class="modal">
+                            <div class="modal-content">
+                                <p>予約を削除してよろしいですか？</p>
+                                    <div class="modal-buttons">
+                                        <button id="confirmYes" class="btn btn-danger">削除</button>
+                                        <button id="confirmNo" class="btn btn-secondary">キャンセル</button>
+                                    </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -79,6 +80,19 @@
             document.getElementById('confirmModal').style.display = 'none'; // モーダルを非表示
         };
     }
+
+    // 予約削除時のフラッシュメッセージ
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const flashMessage = document.getElementById('flash-message');
+
+        // フラッシュメッセージを表示する
+        flashMessage.style.opacity = '1';
+
+        // 4秒後にメッセージを非表示にする
+        setTimeout(() => {
+            flashMessage.style.opacity = '0';
+        }, 4000);
+    });
 </script>
 </body>
 

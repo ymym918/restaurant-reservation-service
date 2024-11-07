@@ -12,12 +12,47 @@ body {
 .container {
     padding-left: 1.5cm;
     padding-right: 1cm;
-    padding-bottom: 2cm;
+}
+
+/* フラッシュメッセージ */
+@keyframes slide-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.alert {
+    color: rgb(71, 71, 71);
+    background-color: rgba(117, 211, 255, 0.679);
+    margin-top: 50px;
+    height: 50px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 20px;
+    border-radius: 3px;
+    opacity: 0; /* 初期状態は非表示 */
+    animation: slide-fade-in 0.5s forwards, fade-out 0.5s 3.5s forwards; /* フェードインとフェードアウト */
 }
 
 
 .header__wrap {
-    padding-top: 20px;
     padding-bottom: 10px;
 }
 
@@ -28,43 +63,41 @@ body {
 }
 
 .reservation-card {
-    height: 270px;
+    position: relative; /* ×ボタンを相対配置させる基準 */
+    height: 260px;
     width: 450px;
     border-radius: 5px;
     background-color: #3267f9;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
-    margin-top: 25px; /* 予約カード間の余白 */
-    transition: transform 0.2s; /* ホバー時のアニメーション */
-    padding: 30px;
     color: white;
-    font-size: 15px;
+    margin-top: 25px; /* 予約カード間の余白 */
 }
 
 .reservation-card p {
-    margin-bottom: 15px; /* 各データ行の上下間隔 */
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 25px;
 }
 
-.reservation-number {
-    display: flex;
-    margin-top: 5px;
+.reservation-title {
+    margin-left: 15px;
 }
 
-.reservation-number p {
+.reservation-title p {
+    margin-top: -27px;
+    margin-left: 80px;
     font-size: 17px;
-    margin-top: -1px;
 }
 
-.reservation-number .fa-clock {
-    margin-bottom: 30px;
-    margin-right: 40px; /* 時計アイコンと予約番号の間の余白 */
+.fa-clock {
+    margin-top: 30px;
+    margin-left: 20px;
     font-size: 1.5rem  /* 時計アイコンのサイズ変更 */
 }
 
 .label {
-    width: 80px;
     margin-right: 45px; /* ラベルとデータ間の余白 */
-    margin-left: 5px;
-    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .data {
@@ -77,6 +110,9 @@ body {
 
 /* 削除ボタン */
 .delete-button {
+    position: absolute;
+    top: 30px; /* 上からの位置調整 */
+    right: 30px; /* 右からの位置調整 */
     width: 25px;
     height: 25px;
     background-color: #3267f9;
@@ -84,10 +120,8 @@ body {
     border: 2px solid white; /* 円形に白い枠線を追加 */
     border-radius: 60%; /* 円形にする */
     font-size: 23px; /* ×マークのサイズ */
-    text-align: center;
     line-height: 20px; /* ボタンの中央に×を配置 */
     cursor: pointer;
-    margin-left: 250px;
 }
 
 /* モーダル全体の調整 */
