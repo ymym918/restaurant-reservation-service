@@ -46,6 +46,8 @@
                             <p><span class="label">Date</span> <span class="data">{{ $reservation->reservation_date }}</span></p>
                             <p><span class="label">Time</span> <span class="data">{{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}</span></p>
                             <p><span class="label">Number</span> <span class="data-number">{{ $reservation->number_of_people }}人</span></p>
+                            <!-- 予約編集ページへアクセス -->
+                            <a href="{{ route('reservation.edit', $reservation->id) }}" class="btn btn-link">変更する</a>
                         </div>
                         <!-- 削除前の確認モーダルウィンドウ -->
                         <div id="confirmModal" class="modal">

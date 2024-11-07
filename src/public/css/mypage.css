@@ -124,6 +124,21 @@ body {
     cursor: pointer;
 }
 
+/* 「変更する」のボタン */
+.reservation-card a {
+    position: absolute;
+    top: 180px; /* 上からの位置調整 */
+    right: 50px; /* 右からの位置調整 */
+    background-color: rgb(67, 172, 224);
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* モーダル全体の調整 */
 .modal {
     display: none; /* 初期状態で非表示 */

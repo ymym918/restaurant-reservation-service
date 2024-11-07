@@ -34,6 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
 });
 
-// 飲食店予約情報を削除
+// 予約情報を削除
 Route::delete('/reservation/{reservation}', [MyPageController::class, 'destroy'])->name('reservation.destroy');
 
+// 予約変更ページ表示
+Route::get('/reservation/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+
+// 変更した予約内容を保存(更新)
+Route::put('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
