@@ -10,7 +10,6 @@ class MyPageController extends Controller
 {
     public function index()
     {
-        // 現在のログインユーザーを取得
         $user = Auth::user();
 
         // ユーザーの予約情報を取得
@@ -20,7 +19,7 @@ class MyPageController extends Controller
         return view('mypage', compact('user', 'reservations'));
     }
 
-    public function destroy(Reservation $reservation)
+    public function delete(Reservation $reservation)
     {
         // 予約がログインユーザーのものであるか確認
         if ($reservation->user_id == Auth::id()) {

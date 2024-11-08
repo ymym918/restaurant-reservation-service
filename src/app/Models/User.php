@@ -23,7 +23,7 @@ class User extends Authenticatable
     ];
 
     /**
-     *The attributes that should be hidden for arrays.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -40,4 +40,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the favorites for the user.
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Restaurant::class, 'favorites', 'user_id', 'restaurant_id')->withTimestamps();
+    }
 }

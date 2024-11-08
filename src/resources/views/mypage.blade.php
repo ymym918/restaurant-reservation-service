@@ -35,9 +35,9 @@
                                 <i class="fas fa-clock"></i>
                                 <p>予約{{ $loop->iteration }}</p>
                                 <!-- 予約削除ボタン -->
-                                <form action="{{ route('reservation.destroy', $reservation->id) }}" method="POST" id="delete-form" onsubmit="return confirmDelete();">
-                                    @csrf
+                                <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST" id="delete-form" onsubmit="return confirmDelete();">
                                     @method('DELETE')
+                                    @csrf
                                     <button type="submit" class="delete-button" aria-label="削除">×</button>
                                 </form>
                             </div>
