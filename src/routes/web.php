@@ -6,6 +6,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\FavoriteController;
 
 //飲食店一覧ページ表示
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
@@ -35,8 +36,13 @@ Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
 Route::get('/reservation/{reservation_id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
 
 // 予約を変更
-Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+Route::put('/reservation/{reservation_id}', [ReservationController::class, 'update'])->name('reservation.update');
 
 // 予約を削除
-Route::delete('/reservation/{reservation}', [MyPageController::class, 'delete'])->name('reservation.delete');
+Route::delete('/reservation/{reservation_id}', [MyPageController::class, 'delete'])->name('reservation.delete');
 
+// お気に入り飲食店を保存
+Route::post('/like/{restaurant_id}', [FavoriteController::class, 'create'])->name('like');
+
+// お気に入り飲食店を削除
+Route::post('/unlike/{restaurant_id}', [FavoriteController::class, 'delete'])->name('unlike');

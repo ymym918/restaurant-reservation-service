@@ -8,21 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class restaurant extends Model
 {
     use HasFactory;
-    // 都道府県とのリレーション
+
+    // 都道府県テーブルとのリレーション
     public function prefecture()
     {
         return $this->belongsTo(Prefecture::class);
     }
 
-    // ジャンルとのリレーション
+    // ジャンルテーブルとのリレーション
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
 
-    // ユーザーとのリレーション
-    public function users()
+    // favoritesテーブルとのリレーション
+    public function favorites()
     {
-        return $this->belongsToMany(User::class, 'favorites', 'restaurant_id', 'user_id')->withTimestamps();
+        return $this->hasMany(Favorite::class);
+    }
+
+    // お気に入り登録されているかを確認するメソッド
+    public function isFavoritedBy($user)
+    {
+        return $this->favorites()->where('user_id', $user->id)->exists();
     }
 }

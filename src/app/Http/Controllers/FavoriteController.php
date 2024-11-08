@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Favorite;
 use Illuminate\Http\Request;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    // お気に入り追加
     public function create($restaurant_id)
     {
-        $user = Auth::user();
+        $user_id = Auth::id();
 
-        // すでにお気に入りに追加されているか確認
-        if (!$user->favorites()->where('restaurant_id', $restaurant_id)->exists()) {
-            // 多対多リレーションの中間テーブルにレコードを追加
-            $user->favorites()->create($restaurant_id);
-        }
+        // 既にお気に入り登録されていない場合のみ追加
+        $favorite = Favorite::firstOrCreate([
+            'user_id' => $user_id,
+            'restaurant_id' => $restaurant_id,
+        ]);
 
-        return redirect()->back()->with('success', 'お気に入りに追加しました。');
+        return response()->json(['success' => true]);
     }
 
-    // お気に入り削除メソッド
-    public function delete($restaurant_id)
+    public function removeFavorite($restaurantId)
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
-        // お気に入りのレコードを取得し、存在する場合は削除
-        $user->favorites()->delete($restaurant_id);
+        // 飲食店のお気に入りを論理削除
+        $favorite = Favorite::where('user_id', $user->id)
+            ->where('restaurant_id', $restaurantId)
+            ->first();
 
-        return redirect()->back()->with('success', 'お気に入りを削除しました。');
+        if ($favorite) {
+            $favorite->delete(); // 論理削除
+        }
+
+        return response()->json(['success' => true]);
     }
 }

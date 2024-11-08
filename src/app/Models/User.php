@@ -41,11 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the favorites for the user.
-     */
+    // favoritesテーブルとのリレーション
     public function favorites()
     {
-        return $this->belongsToMany(Restaurant::class, 'favorites', 'user_id', 'restaurant_id')->withTimestamps();
+        return $this->hasMany(Favorite::class);
     }
 }
