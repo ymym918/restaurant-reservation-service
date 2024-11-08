@@ -47,7 +47,7 @@ class ReservationController extends Controller
         return view('reservation.edit', compact('reservation', 'restaurant'));
     }
 
-    // 更新処理用のメソッド
+    // 予約変更(更新)
     public function update(Request $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -72,5 +72,18 @@ class ReservationController extends Controller
         ]);
 
         return redirect()->route('mypage')->with('success', '予約情報が更新されました');
+    }
+
+    // 予約削除(論理削除)
+    public function softDelete($id)
+    {
+        $reservation = Reservation::find($id);
+
+        if ($reservation) {
+            $reservation->delete(); // 論理削除
+            return redirect()->route('mypage')->with('success', '予約が削除されました');
+        }
+
+        return redirect()->route('mypage')->with('error', '予約が見つかりませんでした');
     }
 }

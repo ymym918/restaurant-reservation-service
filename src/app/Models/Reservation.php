@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -18,6 +17,8 @@ class Reservation extends Model
         'reservation_time',
         'number_of_people',
     ];
+
+    protected $dates = ['deleted_at']; // 論理削除のためのカラムを設定
 
     // 関連付け: レストラン
     public function restaurant() {

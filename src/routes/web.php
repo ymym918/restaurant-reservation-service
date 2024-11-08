@@ -39,7 +39,7 @@ Route::get('/reservation/{reservation_id}/edit', [ReservationController::class, 
 Route::put('/reservation/{reservation_id}', [ReservationController::class, 'update'])->name('reservation.update');
 
 // 予約を削除
-Route::delete('/reservation/{reservation_id}', [MyPageController::class, 'delete'])->name('reservation.delete');
+Route::delete('/reservation/{reservation_id}', [ReservationController::class, 'softDelete'])->name('reservation.softDelete');
 
 // お気に入り飲食店を保存
 Route::post('/like/{restaurant_id}', [FavoriteController::class, 'create'])->name('like');
