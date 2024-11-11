@@ -45,7 +45,7 @@ header {
     background-color: #fff;
     border-radius: 7px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .card img {
@@ -90,7 +90,6 @@ header {
     align-items: right;
     font-size: 2em; /* ハートの大きさ */
     line-height: 2; /* 行の高さを統一 */
-    color: gray; /* 初期はグレー */
     cursor: pointer; /* クリック可能なカーソル */
     transition: color 0.3s ease; /* 色の変化をスムーズに */
 }
