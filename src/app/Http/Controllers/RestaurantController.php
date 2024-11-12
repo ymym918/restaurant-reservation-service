@@ -22,7 +22,7 @@ class RestaurantController extends Controller
             return redirect()->route('register'); // 会員登録画面にリダイレクト
         }
 
-        // 認証されている場合のロジック
+        // 認証されている場合
         $restaurant = Restaurant::findOrFail($restaurant_id);
         return view('detail', compact('restaurant'));
     }

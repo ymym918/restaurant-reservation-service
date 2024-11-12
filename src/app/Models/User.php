@@ -41,7 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // favoritesテーブルとのリレーション
+    // favoriteのリレーション
     public function favorites()
     {
         return $this->hasMany(Favorite::class);

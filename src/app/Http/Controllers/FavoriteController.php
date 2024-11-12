@@ -2,38 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Restaurant;
 use App\Models\Favorite;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function create($restaurant_id)
+    // お気に入り登録
+    public function addFavorite(Request $request, $restaurantId)
     {
-        $user_id = Auth::id();
+        $user = Auth::user();
+        $restaurant = Restaurant::findOrFail($restaurantId);
 
-        // 既にお気に入り登録されていない場合のみ追加
-        $favorite = Favorite::firstOrCreate([
-            'user_id' => $user_id,
-            'restaurant_id' => $restaurant_id,
-        ]);
-
-        return response()->json(['success' => true]);
-    }
-
-    public function removeFavorite($restaurantId)
-    {
-        $user = auth()->user();
-
-        // 飲食店のお気に入りを論理削除
-        $favorite = Favorite::where('user_id', $user->id)
-            ->where('restaurant_id', $restaurantId)
+        // お気に入りが既に存在する場合は論理削除されている場合もあるので、探す
+        $favorite = Favorite::withTrashed()
+            ->where('user_id', $user->id)
+            ->where('restaurant_id', $restaurant->id)
             ->first();
 
         if ($favorite) {
-            $favorite->delete(); // 論理削除
+            // もし論理削除されていたら復活させる
+            if ($favorite->trashed()) {
+                $favorite->restore();
+            }
+        } else {
+            // 新規にお気に入りを追加
+            Favorite::create([
+                'user_id' => $user->id,
+                'restaurant_id' => $restaurant->id,
+            ]);
         }
 
-        return response()->json(['success' => true]);
+        return response()->json(['status' => 'success']);
+    }
+
+    // お気に入り削除
+    public function removeFavorite(Request $request, $restaurantId)
+    {
+        $user = Auth::user();
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        // 論理削除
+        $favorite = Favorite::where('user_id', $user->id)
+            ->where('restaurant_id', $restaurant->id)
+            ->first();
+
+        if ($favorite) {
+            $favorite->delete();
+        }
+
+        return response()->json(['status' => 'success']);
     }
 }

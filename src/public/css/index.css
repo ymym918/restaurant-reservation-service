@@ -50,7 +50,7 @@ header {
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover; /* 画像をカードに収める */
 }
 
@@ -85,31 +85,25 @@ header {
     background-color: #0056b3;
 }
 
-/* ハートマークのスタイル */
-.favorite {
-    align-items: right;
-    font-size: 2em; /* ハートの大きさ */
-    line-height: 2; /* 行の高さを統一 */
-    cursor: pointer; /* クリック可能なカーソル */
+/* お気に入りのハートの共通スタイル */
+.heart {
+    cursor: pointer;
+    font-size: 40px;
     transition: color 0.3s ease; /* 色の変化をスムーズに */
+    margin-left: 130px;
 }
 
-/* 塗りつぶしのハートのスタイル */
-.favorite.active {
-    color: red;
-    content: '\2665';
+/* お気に入り登録されている場合 (赤いハート) */
+.heart-filled {
+    color: red; /* 赤色 */
 }
 
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
+/* お気に入り登録されていない場合 (空のハート) */
+.heart-empty {
+    color: #d3d3d3; /* 灰色 */
+}
 
-    .header-right {
-        flex-direction: column;
-    }
-
-    .filter, .search-bar {
-        margin-top: 10px;
-    }
+/* アクティブなハート (クリックされた時に少し大きくなる) */
+.heart.active {
+    transform: scale(1.1); /* クリックされた時にハートが少し大きくなる */
 }

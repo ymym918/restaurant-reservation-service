@@ -21,7 +21,7 @@ class restaurant extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    // favoritesテーブルとのリレーション
+    // favoriteとのリレーション
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
@@ -30,6 +30,9 @@ class restaurant extends Model
     // お気に入り登録されているかを確認するメソッド
     public function isFavoritedBy($user)
     {
+        // $userがnullでない場合のみお気に入り状態を確認
         return $this->favorites()->where('user_id', $user->id)->exists();
+
+        return false; // ログインしていない場合はお気に入りではない
     }
 }

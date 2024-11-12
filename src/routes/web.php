@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
@@ -41,8 +40,8 @@ Route::put('/reservation/{reservation_id}', [ReservationController::class, 'upda
 // 予約を削除
 Route::delete('/reservation/{reservation_id}', [ReservationController::class, 'softDelete'])->name('reservation.softDelete');
 
-// お気に入り飲食店を保存
-Route::post('/like/{restaurant_id}', [FavoriteController::class, 'create'])->name('like');
+// お気に入りの追加
+Route::post('/like/{restaurantId}', [FavoriteController::class, 'addFavorite'])->name('favorite.add');
 
-// お気に入り飲食店を削除
-Route::post('/unlike/{restaurant_id}', [FavoriteController::class, 'delete'])->name('unlike');
+// お気に入りの削除
+Route::delete('/like/{restaurantId}', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
