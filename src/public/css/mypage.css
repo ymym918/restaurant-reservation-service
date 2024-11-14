@@ -53,14 +53,16 @@
 
 .mypage-container {
     display: flex;
-    margin-left: 350px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 250px;
 }
 
 .reservation-card {
     position: relative; /* ×ボタンを相対配置させる基準 */
     height: 260px;
     width: 450px;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: #3267f9;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
     color: white;
@@ -133,59 +135,91 @@
     cursor: pointer;
 }
 
+/* お気に入り店舗のセクション */
 .favorites-section {
     margin-left: 100px;
 }
 
-.restaurant-cards {
+.favorites-section h2 {
+    margin-left: 22px;
+}
+
+.favorite-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     padding: 10px;
 }
 
-.restaurant-card {
+.favorite-card {
+    width: 330px;
+    height: 330px;
+    margin: 17px; /* カード同士の間隔を広げる */
     background-color: #fff;
     border-radius: 7px;
+    overflow: hidden;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.restaurant-card img {
+
+.favorite-card img {
     width: 100%;
     height: 180px;
-    object-fit: cover; /* 画像をカードに収める */
+    object-fit: cover;
 }
 
 .card-info {
     padding: 15px;
     padding-bottom: 25px;
-}
-
-.restaurant-card h3 {
-    font-size: 20px;
-    margin-left: 10px;
-    margin-top: 5px;
     text-align: left;
-}
-
-.restaurant-card p {
-    font-size: 14px;
-    margin-top: 5px;
     margin-left: 10px;
 }
 
-.restaurant-card a {
+.favorite-card h3 {
+    font-size: 20px;
+    margin-top: 7px;
+}
+
+.favorite-card p {
+    font-size: 14px;
+
+}
+
+.favorite-card a {
+    display: inline-block;
     background-color: #3267f9;
     color: #fff;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+    padding: 8px 12px;
     border-radius: 5px;
-    text-decoration: none
+    text-decoration: none;
+    margin-top: 10px;
 }
 
-.restaurant-card a:hover {
+.favorite-card a:hover {
     background-color: #0056b3;
+}
+
+/* お気に入りのハートの共通スタイル */
+.heart {
+    cursor: pointer;
+    font-size: 40px;
+    transition: color 0.3s ease; /* 色の変化をスムーズに */
+    margin-left: 130px;
+}
+
+/* お気に入り登録されている場合 (赤いハート) */
+.heart-filled {
+    color: red; /* 赤色 */
+}
+
+/* お気に入り登録されていない場合 (空のハート) */
+.heart-empty {
+    color: #d3d3d3; /* 灰色 */
+}
+
+/* アクティブなハート (クリックされた時に少し大きくなる) */
+.heart.active {
+    transform: scale(1.1); /* クリックされた時にハートが少し大きくなる */
 }
 
 /* モーダル全体の調整 */

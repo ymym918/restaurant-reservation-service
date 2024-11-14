@@ -33,7 +33,7 @@
             <div class="card-info">
                 <h2>{{ $restaurant->name }}</h2>
                 <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
-                <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しく見る</a>
+                <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しくみる</a>
                 <span class="favorite">
                     <!-- お気に入りの状態によってclassを切り替え -->
                     <span

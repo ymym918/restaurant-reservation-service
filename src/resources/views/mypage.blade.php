@@ -21,95 +21,109 @@
             <h1 class="header__text">{{ $user->name }}さん</h1>
         </div>
 
-            <div class="mypage-container">
-                {{-- 予約情報の表示 --}}
-                <div class="reservation-section">
-                    <h2>予約状況</h2>
-                    @if ($reservations->isEmpty())
-                    <p>予約はありません。</p>
-                    @else
-                    <div class="reservations">
-                        @foreach ($reservations as $reservation)
-                        <div class="reservation-card">
-                            <!-- 時計アイコンと予約番号の表示 -->
-                            <div class="reservation-title">
-                                <i class="fas fa-clock"></i>
-                                <p>予約{{ $loop->iteration }}</p>
-                                <!-- 予約削除ボタン -->
-                                <form action="{{ route('reservation.softDelete', $reservation->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="delete-button" aria-label="削除">×</button>
-                                </form>
-                            </div>
-                            <!-- 予約情報の表示 -->
-                            <p><span class="label">Shop</span> <span class="data-shop">{{$reservation->restaurant->name }}</span></p>
-                            <p><span class="label">Date</span> <span class="data">{{ $reservation->reservation_date }}</span></p>
-                            <p><span class="label">Time</span> <span class="data">{{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}</span></p>
-                            <p><span class="label">Number</span> <span class="data-number">{{ $reservation->number_of_people }}人</span></p>
-                            <!-- 予約編集ページへアクセス -->
-                            <a href="{{ route('reservation.edit', $reservation->id) }}" class="btn btn-link">変更する</a>
+        <div class="mypage-container">
+            {{-- 予約情報の表示 --}}
+            <div class="reservation-section">
+                <h2>予約状況</h2>
+                @if ($reservations->isEmpty())
+                <p>予約はありません。</p>
+                @else
+                <div class="reservations">
+                    @foreach ($reservations as $reservation)
+                    <div class="reservation-card">
+                        <div class="reservation-title">
+                            <i class="fas fa-clock"></i>
+                            <p>予約{{ $loop->iteration }}</p>
+                            <form action="{{ route('reservation.softDelete', $reservation->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="delete-button" aria-label="削除">×</button>
+                            </form>
                         </div>
-                        @endforeach
+                        <p><span class="label">Shop</span> <span class="data-shop">{{ $reservation->restaurant->name }}</span></p>
+                        <p><span class="label">Date</span> <span class="data">{{ $reservation->reservation_date }}</span></p>
+                        <p><span class="label">Time</span> <span class="data">{{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}</span></p>
+                        <p><span class="label">Number</span> <span class="data-number">{{ $reservation->number_of_people }}人</span></p>
+                        <a href="{{ route('reservation.edit', $reservation->id) }}" class="btn btn-link">変更する</a>
                     </div>
-                    @endif
+                    @endforeach
                 </div>
+                @endif
+            </div>
 
-                {{-- お気に入り店舗の表示 --}}
-                <div class="favorites-section">
-                    <h2>お気に入り店舗</h2>
-                    @if ($favorites->isEmpty())
-                    <p>お気に入り店舗はありません。</p>
-                    @else
-                    <div class="restaurant-cards">
-                        @foreach ($favorites as $favorite)
-                        <div class="restaurant-card">
-                            <img src="{{ $favorite->restaurant->image_path }}" alt="{{ $favorite->restaurant->name }}">
-                            <div class="card-info">
-                                <h3>{{ $favorite->restaurant->name }}</h3>
-                                <p>#{{ $favorite->restaurant->prefecture->name }} #{{ $favorite->restaurant->genre->name }}</p>
-                                <a href="{{ route('restaurant.detail', $favorite->restaurant->id) }}" class="btn btn-link">詳しく見る</a>
-                            </div>
+            {{-- お気に入り店舗の表示 --}}
+            <div class="favorites-section">
+                <h2>お気に入り店舗</h2>
+                @if ($favorites->isEmpty())
+                <p>お気に入り店舗はありません。</p>
+                @else
+                <div class="favorite-cards">
+                    @foreach ($favorites as $favorite)
+                    <div class="favorite-card">
+                        <img src="{{ $favorite->restaurant->image_path }}" alt="{{ $favorite->restaurant->name }}">
+                        <div class="card-info">
+                            <h3>{{ $favorite->restaurant->name }}</h3>
+                            <p>#{{ $favorite->restaurant->prefecture->name }} #{{ $favorite->restaurant->genre->name }}</p>
+                            <a href="{{ route('restaurant.detail', $favorite->restaurant->id) }}" class="btn btn-link">詳しくみる</a>
+                            <span class="favorite">
+                                <span class="heart {{ $favorite->isFavoritedBy(Auth::id(), $favorite->restaurant->id) ? 'heart-filled' : 'heart-empty' }}"
+        onclick="toggleFavorite(this, {{ $favorite->restaurant->id }})">&#x2665;
+                                </span>
+                            </span>
                         </div>
                     </div>
                     @endforeach
                 </div>
+                @endif
             </div>
-            @endif
         </div>
 </main>
 
-    <!-- JavaScriptコード -->
-    <script>
-        // 削除ボタンがクリックされたときにモーダルを表示
-        function confirmDelete() {
-            event.preventDefault(); // フォームの送信を防ぐ
-            document.getElementById('confirmModal').style.display = 'flex'; // モーダルを表示
+<script>
+function toggleFavorite(element, restaurantId) {
+    // ハートの中身を切り替え (塗りつぶし or 空)
+    if (element.classList.contains('heart-empty')) {
+        element.classList.remove('heart-empty');
+        element.classList.add('heart-filled');
+        addFavorite(restaurantId); // お気に入り追加
+    } else {
+        element.classList.remove('heart-filled');
+        element.classList.add('heart-empty');
+        removeFavorite(restaurantId); // お気に入り削除
+    }
+}
 
-            // 削除ボタンの「はい」をクリックした場合
-            document.getElementById('confirmYes').onclick = function() {
-                document.getElementById('delete-form').submit(); // フォームを送信して削除を実行
-            };
-
-            // キャンセルボタンをクリックした場合
-            document.getElementById('confirmNo').onclick = function() {
-                document.getElementById('confirmModal').style.display = 'none'; // モーダルを非表示
-            };
+// お気に入り登録
+function addFavorite(restaurantId) {
+    fetch(`/like/${restaurantId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('お気に入り追加:', data);
+    })
+    .catch(error => console.error('エラー:', error));
+}
 
-        // 予約削除時のフラッシュメッセージ
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const flashMessage = document.getElementById('flash-message');
-
-            // フラッシュメッセージを表示する
-            flashMessage.style.opacity = '1';
-
-            // 4秒後にメッセージを非表示にする
-            setTimeout(() => {
-                flashMessage.style.opacity = '0';
-            }, 4000);
-        });
-    </script>
-</body>
+// お気に入り削除
+function removeFavorite(restaurantId) {
+    fetch(`/like/${restaurantId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('お気に入り削除:', data);
+    })
+    .catch(error => console.error('エラー:', error));
+}
+</script>
 
 @endsection

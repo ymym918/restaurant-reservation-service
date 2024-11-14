@@ -14,6 +14,9 @@ class MyPageController extends Controller
         $user = Auth::user();
         $restaurants = Restaurant::all();
 
+        // ユーザーのお気に入り店舗を取得
+        $favorites = Favorite::where('user_id', $user->id)->get();
+
         // ユーザーの予約情報を取得
         $reservations = Reservation::where('user_id', $user->id)->get();
 
