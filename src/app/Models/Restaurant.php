@@ -9,13 +9,13 @@ class restaurant extends Model
 {
     use HasFactory;
 
-    // 都道府県テーブルとのリレーション
+    // 都道府県とのリレーション
     public function prefecture()
     {
         return $this->belongsTo(Prefecture::class);
     }
 
-    // ジャンルテーブルとのリレーション
+    // ジャンルとのリレーション
     public function genre()
     {
         return $this->belongsTo(Genre::class);
@@ -34,5 +34,17 @@ class restaurant extends Model
         return $this->favorites()->where('user_id', $user->id)->exists();
 
         return false; // ログインしていない場合はお気に入りではない
+    }
+
+    // エリア(prefecture)検索スコープ
+    public function scopePrefecture($query, $prefecture)
+    {
+        return $query->where('prefecture', $prefecture);
+    }
+
+    // ジャンル(genre)検索スコープ
+    public function scopeGenre($query, $genre)
+    {
+        return $query->where('genre', $genre);
     }
 }
