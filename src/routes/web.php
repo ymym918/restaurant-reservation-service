@@ -45,3 +45,4 @@ Route::post('/like/{restaurantId}', [FavoriteController::class, 'addFavorite'])-
 
 // お気に入りの削除
 Route::delete('/like/{restaurantId}', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
+

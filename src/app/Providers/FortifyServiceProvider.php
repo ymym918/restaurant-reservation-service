@@ -43,5 +43,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('auth.login');
         });
+
+        RateLimiter::for('login', function () {
+            return Limit::perMinute(100); // 1分あたり100回のリクエストを許可
+        });
     }
 }

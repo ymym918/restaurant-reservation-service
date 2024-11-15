@@ -1,27 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.menu-button {
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
 }
 
 .filter, .search-bar {

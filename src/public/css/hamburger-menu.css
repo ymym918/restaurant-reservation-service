@@ -1,0 +1,84 @@
+/* ハンバーガーメニューアイコン */
+.menu-icon {
+    width: 45px;
+    height: 45px;
+    background-color: #3267f9;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    left: 40px;
+    z-index: 1001;
+    transition: transform 0.3s ease; /* 開閉のアニメーションを緩やかに */
+}
+
+/* ハンバーガーメニューのバー */
+.menu-icon .bar {
+    width: 24px;
+    height: 1px;
+    background-color: white;
+    margin: 3px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ドロワーメニュー表示中のアイコン変形 */
+.menu-icon.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-icon.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ドロワーメニュー */
+.drawer-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #333;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+/* 表示中のドロワーメニュー */
+.drawer-menu.show {
+    transform: translateX(0);
+}
+
+/* ドロワーメニュー内のメニュー項目 */
+.drawer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drawer-menu ul li {
+    padding: 20px;
+    text-align: center;
+}
+
+.drawer-menu ul li a {
+    color: #3267f9;
+    text-decoration: none;
+    font-size: 30px;
+}
