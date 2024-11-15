@@ -3,10 +3,15 @@
     padding: 0;
 }
 
+.header-right {
+    margin-top: -50px;
+    margin-left: 850px;
+}
+
 .filter, .search-bar {
-    margin-left: 10px;
-    padding: 5px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 7px;
 }
 
 .grid-container {
