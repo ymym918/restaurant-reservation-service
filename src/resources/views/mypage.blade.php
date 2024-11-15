@@ -21,6 +21,23 @@
             <h1 class="header__text">{{ $user->name }}さん</h1>
         </div>
 
+        <div class="modal" id="deleteModal" style="display: none;">
+            <div class="modal-content">
+                <p>予約を削除しますか？</p>
+                <div class="modal-buttons">
+                    <!-- 削除ボタン -->
+                    <form id="deleteForm" action="" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">削除する</button>
+                    </form>
+                    <!-- キャンセルボタン -->
+                    <button class="btn btn-secondary" id="cancelButton">キャンセル</button>
+                </div>
+            </div>
+        </div>
+
+
         <div class="mypage-container">
             {{-- 予約情報の表示 --}}
             <div class="reservation-section">
@@ -37,7 +54,7 @@
                             <form action="{{ route('reservation.softDelete', $reservation->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="delete-button" aria-label="削除">×</button>
+                                <button type="button" class="delete-button" data-action="{{ route('reservation.softDelete', $reservation->id) }}" aria-label="削除">×</button>
                             </form>
                         </div>
                         <p><span class="label">Shop</span> <span class="data-shop">{{ $reservation->restaurant->name }}</span></p>
@@ -80,6 +97,27 @@
 </main>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    const modal = document.getElementById("deleteModal");
+    const cancelButton = document.getElementById("cancelButton");
+    const deleteForm = document.getElementById("deleteForm");
+
+    // 各削除ボタンにクリックイベントを設定
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const actionUrl = this.getAttribute("data-action"); // データ属性からアクションURLを取得
+            deleteForm.action = actionUrl; // モーダル内のフォームにURLを設定
+            modal.style.display = "flex"; // モーダルを表示
+        });
+    });
+
+    // キャンセルボタンにクリックイベントを設定
+    cancelButton.addEventListener("click", function () {
+        modal.style.display = "none"; // モーダルを閉じる
+    });
+});
+
 function toggleFavorite(element, restaurantId) {
     // ハートの中身を切り替え (塗りつぶし or 空)
     if (element.classList.contains('heart-empty')) {
