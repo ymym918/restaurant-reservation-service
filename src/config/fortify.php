@@ -2,6 +2,7 @@
 
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 return [
 
@@ -162,5 +163,10 @@ return [
         'login' => '/', // ログイン後のリダイレクト先
         'register' => '/thanks', // 会員登録後のリダイレクト先
         'logout' => '/login', // ログアウト後のリダイレクト先
+    ],
+
+    'register' => [
+        'view' => 'auth.register',
+        'controller' => \App\Http\Controllers\Auth\RegisteredUserController::class,
     ],
 ];

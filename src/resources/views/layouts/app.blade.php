@@ -21,7 +21,7 @@
                     Rese
                 </a>
                 <!-- ハンバーガーメニューとドロワーメニュー -->
-                <div class="menu-icon" onclick="toggleDrawerMenu()">
+                <div class="menu-icon" id="hamburger-menu" onclick="toggleDrawerMenu()">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -50,10 +50,8 @@
             </ul>
         </div>
     </main>
-</body>
-</html>
 
-{{-- ハンバーガーメニュー用のJSコード --}}
+    {{-- ハンバーガーメニュー用のJSコード --}}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const hamburgerMenu = document.getElementById("hamburger-menu");
@@ -82,3 +80,6 @@
         drawerMenu.classList.toggle('show');
     }
 </script>
+
+</body>
+</html>

@@ -3,28 +3,24 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Contracts\RegisterResponse;
-use Laravel\Fortify\Contracts\RegisterUser;
-use Laravel\Fortify\Fortify;
 
 class RegisteredUserController extends Controller
 {
-    public function create()
+    public function index()
     {
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        // ユーザーの登録
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        // バリデーションを通過したデータを取得
+        $validated = $request->validated();
+
+        // ユーザーを作成
+        User::create($validated);
 
         // ユーザーをログアウト
         Auth::logout();

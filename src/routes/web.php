@@ -11,10 +11,10 @@ use App\Http\Controllers\FavoriteController;
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
 
 // 会員登録ページ表示
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/register', [RegisteredUserController::class, 'index'])->name('register.index');
 
-// 会員登録情報の保存
-Route::post('/register', [RegisteredUserController::class, 'store']);
+// 会員登録情報の追加
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
 //サンクスページ表示
 Route::get('/thanks', function () {return view('thanks');})->name('thanks');
