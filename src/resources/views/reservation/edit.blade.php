@@ -32,6 +32,9 @@
                     {{-- 予約年月日 --}}
                     <label for="reservation_date"></label>
                     <input type="date" id="reservation_date" name="reservation_date" value="{{ $reservation->reservation_date }}" required>
+                    @error('reservation_date')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
 
                     {{-- 予約時間 --}}
                     <label for="time"></label>
@@ -41,6 +44,9 @@
                             <option value="{{ $time }}" {{ $reservation->reservation_time == $time ? 'selected' : '' }}>{{ $time }}</option>
                         @endforeach
                     </select>
+                    @error('reservation_time')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
 
                     {{-- 予約人数 --}}
                     <label for="number_of_people"></label>
@@ -50,6 +56,9 @@
                             <option value="{{ $i }}" {{ $reservation->number_of_people == $i ? 'selected' : '' }}>{{ $i }}人</option>
                         @endfor
                     </select>
+                    @error('number_of_people')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
 
                     <div class="button-container">
                         <button type="submit">変更する</button>

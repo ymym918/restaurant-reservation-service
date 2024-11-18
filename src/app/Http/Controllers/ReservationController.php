@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    public function store(Request $request)
+    // 予約の新規作成
+    public function store(ReservationRequest $request)
     {
         // ログインユーザーIDを取得
         $userId = auth()->id();
 
-        // Reservationモデルを使用して新しい予約を作成
+        // 新規予約を作成
         Reservation::create([
             'user_id' => $userId,
             'restaurant_id' => $request->restaurant_id,
@@ -24,7 +27,7 @@ class ReservationController extends Controller
         return redirect()->route('reservation.complete');
     }
 
-    // 予約完了後、予約完了ページへリダイレクト
+    // 予約完了ページ
     public function complete()
     {
         return view('reservation.complete');
@@ -48,16 +51,9 @@ class ReservationController extends Controller
     }
 
     // 予約変更(更新)
-    public function update(Request $request, $id)
+    public function update(ReservationRequest $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
-
-        // バリデーション
-        $request->validate([
-            'reservation_date' => 'required|date',
-            'reservation_time' => 'required|date_format:H:i',
-            'number_of_people' => 'required|integer|min:1',
-        ]);
 
         // 予約が現在のユーザーのものであるか確認（必要に応じて）
         if (auth()->id() !== $reservation->user_id) {

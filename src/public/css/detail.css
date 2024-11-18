@@ -77,7 +77,6 @@ body {
     width: 630px;
     color: white;
     border-radius: 6px;
-    margin-top: -30px;
     margin-left: 100px;
 }
 
@@ -132,7 +131,7 @@ body {
     height:190px;
     width: 500px;
     background-color: rgba(255, 255, 255, 0.2);
-    margin-top: -410px;
+    margin-top: -390px;
     padding: 25px;
     border-radius: 5px;
 }
@@ -157,11 +156,17 @@ body {
     width: 630px;
     padding: 15px;
     margin-left: -40px;
-    margin-top: 363px;
+    margin-top: 350px;
     background-color: #1d4ed8;
     border: none;
     border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
+}
+
+.error {
+    color: rgb(251, 108, 108);
+    font-size: 15px;
+    margin-top: -10px;
 }
