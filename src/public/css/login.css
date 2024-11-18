@@ -59,13 +59,9 @@ body {
     background-color: #336ab3;
 }
 
-.login-error__message {
+.error__message {
     color: red;
-    font-size: 14px;
-}
-
-.error__item {
-    color: red;
-    font-size: 12px;
-    text-align: center;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
 }

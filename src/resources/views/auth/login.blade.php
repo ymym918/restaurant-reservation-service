@@ -19,7 +19,7 @@
     <form class="form__wrap" action="/login" method="post">
         @csrf
         <div class="form__item">
-            <input class="form__input" type="email" name="email" placeholder="Email">
+            <input class="form__input" type="email" name="email" placeholder="Email" >
         </div>
         <div class="error__item">
             @error('email')

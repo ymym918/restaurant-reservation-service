@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
 
@@ -17,7 +18,18 @@ Route::get('/register', [RegisteredUserController::class, 'index'])->name('regis
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
 //サンクスページ表示
-Route::get('/thanks', function () {return view('thanks');})->name('thanks');
+Route::get('/thanks', function () {
+    return view('thanks');
+})->name('thanks');
+
+// ログイン画面表示
+Route::get('login', [LoginController::class, 'loginView'])->name('login');
+
+// ログインフォーム送信時
+Route::post('login', [LoginController::class, 'login']);
+
+// ログアウト
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 //飲食店詳細ページ表示
 Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('restaurant.detail');
