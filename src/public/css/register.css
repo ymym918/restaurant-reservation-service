@@ -59,13 +59,8 @@ body {
     background-color: #336ab3;
 }
 
-.login-error__message {
+.form__error {
     color: red;
-    font-size: 14px;
-}
-
-.error__item {
-    color: red;
-    font-size: 12px;
-    text-align: center;
+    font-size: 15px;
+    text-align: end;
 }
