@@ -9,6 +9,8 @@ class Prefecture extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     // レストランへのリレーション
     public function restaurants()
     {

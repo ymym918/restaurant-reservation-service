@@ -21,7 +21,7 @@ class restaurant extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    // favoriteとのリレーション
+    // お気に入りとのリレーション
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
@@ -34,15 +34,31 @@ class restaurant extends Model
         return $user ? $this->favorites()->where('user_id', $user->id)->exists() : false;
     }
 
-    // エリア(prefecture)検索スコープ
-    public function scopePrefecture($query, $prefecture)
+    // area検索(ローカルスコープ)
+    public function scopePrefectureSearch($query, $prefecture)
     {
-        return $query->where('prefecture', $prefecture);
+        if ($prefecture) {
+            return $query->whereHas('prefecture', function ($q) use ($prefecture) {
+                $q->where('name', $prefecture);
+            });
+        }
     }
 
-    // ジャンル(genre)検索スコープ
-    public function scopeGenre($query, $genre)
+    // genre検索(ローカルスコープ)
+    public function scopeGenreSearch($query, $genre)
     {
-        return $query->where('genre', $genre);
+        if ($genre) {
+            return $query->whereHas('genre', function ($q) use ($genre) {
+                $q->where('name', $genre);
+            });
+        }
+    }
+
+    // キーワード検索(ローカルスコープ)
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if ($keyword) {
+            return $query->where('name', 'like', "%{$keyword}%");
+        }
     }
 }

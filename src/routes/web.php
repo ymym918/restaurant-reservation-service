@@ -11,6 +11,9 @@ use App\Http\Controllers\FavoriteController;
 //飲食店一覧ページ表示
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
 
+// 検索機能(カテゴリー検索とキーワード検索)
+Route::get('/restaurants/search', [RestaurantController::class, 'search'])->name('restaurants.search');
+
 // 会員登録ページ表示
 Route::get('/register', [RegisteredUserController::class, 'index'])->name('register.index');
 
@@ -57,4 +60,3 @@ Route::post('/like/{restaurantId}', [FavoriteController::class, 'addFavorite'])-
 
 // お気に入りの削除
 Route::delete('/like/{restaurantId}', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
-

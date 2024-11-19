@@ -6,55 +6,60 @@
 
 @section('content')
 <header>
-    <div class="header-right">
-        <!-- 検索フォーム -->
-        <form action="{{ route('restaurant.index') }}" method="get">
-            <select class="filter" name="area">
-                <option value="all">All areas</option>
-                <option value="tokyo" {{ request('prefecture') == 'Tokyo' ? 'selected' : '' }}>東京</option>
-                <option value="osaka" {{ request('prefecture') == 'Osaka' ? 'selected' : '' }}>大阪</option>
-                <option value="fukuoka" {{ request('prefecture') == 'Fukuoka' ? 'selected' : '' }}>福岡</option>
-            </select>
-            <select class="filter" name="genre">
-                <option value="all">All genres</option>
-                <option value="sushi" {{ request('genre') == '寿司' ? 'selected' : '' }}>寿司</option>
-                <option value="yakiniku" {{ request('genre') == '焼肉' ? 'selected' : '' }}>焼肉</option>
-                <option value="izakaya" {{ request('genre') == '居酒屋' ? 'selected' : '' }}>居酒屋</option>
-                <option value="ramen" {{ request('genre') == 'ラーメン' ? 'selected' : '' }}>ラーメン</option>
-                <option value="italian" {{ request('genre') == 'イタリアン' ? 'selected' : '' }}>イタリアン</option>
-            </select>
-            <input type="text" class="search-bar" placeholder="Search ...">
-            <button type="submit" class="btn btn-primary">検索</button>
-        </form>
+    <div class="search-container">
+    <!-- 検索フォーム -->
+    <form action="{{ route('restaurants.search') }}" method="GET" class="search-form">
+        <!-- areaカテゴリー選択肢 -->
+        <select name="prefecture">
+            <option value="">All area</option>
+            @foreach ($prefectures as $prefecture)
+            <option value="{{ $prefecture->name }}" {{ request('prefecture') == $prefecture->name ? 'selected' : '' }}>
+                {{ $prefecture->name }}
+            </option>
+            @endforeach
+        </select>
+        <!-- genreカテゴリー選択肢 -->
+        <select name="genre">
+        <option value="">All genre</option>
+        @foreach ($genres as $genre)
+            <option value="{{ $genre->name }}" {{ request('genre') == $genre->name ? 'selected' : '' }}>
+                {{ $genre->name }}
+            </option>
+        @endforeach
+        </select>
+        <!-- キーワード検索 -->
+        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="🔍Search...">
+        <button type="submit"></button>
+    </form>
+
+    <!-- 検索条件に該当する飲食店がない時にメッセージを返す -->
+    @if(isset($noResultsMessage))
+    <div class="alert alert-warning">
+        {{ $noResultsMessage }}
     </div>
+    @endif
 </header>
 
 <main>
-    <!-- 検索結果が存在しない場合のメッセージ -->
-    @if($restaurants->isEmpty())
-        <p>該当する店舗はありません。</p>
-    @else
-        <div class="grid-container">
-            @foreach($restaurants as $restaurant)
-            <div class="card">
-                <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
-                <div class="card-info">
-                    <h2>{{ $restaurant->name }}</h2>
-                    <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
-                    <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しくみる</a>
-                    <span class="favorite">
-                        <!-- お気に入りの状態によってclassを切り替え -->
-                        <span
-                            class="heart {{ $restaurant->isFavoritedBy(Auth::user()) ? 'heart-filled' : 'heart-empty' }}"
-                            onclick="toggleFavorite(this, {{ $restaurant->id }})">
-                            &#x2665;
-                        </span>
+    <div class="grid-container">
+        @foreach($restaurants as $restaurant)
+        <div class="card">
+            <img src="{{ $restaurant->image_path }}" alt="{{ $restaurant->name }}">
+            <div class="card-info">
+                <h2>{{ $restaurant->name }}</h2>
+                <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
+                <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しくみる</a>
+                <span class="favorite">
+                    <!-- お気に入りの状態によってclassを切り替え -->
+                    <span class="heart {{ $restaurant->isFavoritedBy(Auth::user()) ? 'heart-filled' : 'heart-empty' }}"
+                        onclick="toggleFavorite(this, {{ $restaurant->id }})">
+                        &#x2665;
                     </span>
-                </div>
+                </span>
             </div>
-            @endforeach
         </div>
-    @endif
+        @endforeach
+    </div>
 </main>
 
 <script>
@@ -102,6 +107,13 @@ function removeFavorite(restaurantId) {
     })
     .catch(error => console.error('エラー:', error));
 }
+
+// 検索結果がない場合、5秒後に飲食店一覧ページにリダイレクト
+    @if(isset($noResultsMessage))
+        setTimeout(function() {
+            window.location.href = "{{ route('restaurant.index') }}";  // 飲食店一覧ページにリダイレクト
+        }, 5000); // 5秒後にリダイレクト
+    @endif
 </script>
 
 @endsection

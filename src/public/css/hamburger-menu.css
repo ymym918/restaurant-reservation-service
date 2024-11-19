@@ -12,7 +12,7 @@
     align-items: center;
     position: fixed;
     top: 50px;
-    left: 55px;
+    left: 60px;
     z-index: 1001;
     transition: transform 0.3s ease; /* 開閉のアニメーションを緩やかに */
 }
