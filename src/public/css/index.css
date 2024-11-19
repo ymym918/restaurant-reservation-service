@@ -125,3 +125,9 @@ header button {
 .heart.active {
     transform: scale(1.1); /* クリックされた時にハートが少し大きくなる */
 }
+
+.heart-disabled {
+    color: lightgray;
+    cursor: not-allowed; /* クリックできない状態 */
+    opacity: 0.6;
+}

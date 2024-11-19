@@ -50,11 +50,18 @@
                 <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
                 <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しくみる</a>
                 <span class="favorite">
-                    <!-- お気に入りの状態によってclassを切り替え -->
+                    @if(Auth::check())
+                    <!-- ログインしている場合はクリック可能 -->
                     <span class="heart {{ $restaurant->isFavoritedBy(Auth::user()) ? 'heart-filled' : 'heart-empty' }}"
                         onclick="toggleFavorite(this, {{ $restaurant->id }})">
                         &#x2665;
                     </span>
+                    @else
+                    <!-- ゲストの場合はクリック不可 -->
+                    <span class="heart heart-disabled" title="ログインするとお気に入り登録ができます">
+                        &#x2665;
+                    </span>
+                    @endif
                 </span>
             </div>
         </div>
@@ -106,6 +113,24 @@ function removeFavorite(restaurantId) {
         console.log('お気に入り削除:', data);
     })
     .catch(error => console.error('エラー:', error));
+}
+
+// ゲストユーザーはお気に入り登録不可にする処理
+function toggleFavorite(element, restaurantId) {
+    if (!@json(Auth::check())) {
+        alert('ログインするとお気に入り登録ができます');
+        return;
+    }
+
+    if (element.classList.contains('heart-empty')) {
+        element.classList.remove('heart-empty');
+        element.classList.add('heart-filled');
+        addFavorite(restaurantId);
+    } else {
+        element.classList.remove('heart-filled');
+        element.classList.add('heart-empty');
+        removeFavorite(restaurantId);
+    }
 }
 
 // 検索結果がない場合、5秒後に飲食店一覧ページにリダイレクト

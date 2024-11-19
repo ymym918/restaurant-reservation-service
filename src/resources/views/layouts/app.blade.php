@@ -15,18 +15,14 @@
 
 <body>
     <header class="header">
-        <div class="header__inner">
-            <div class="header-utilities">
-                <a class="header__logo" href="/">
-                    Rese
-                </a>
-                <!-- ハンバーガーメニューとドロワーメニュー -->
-                <div class="menu-icon" id="hamburger-menu" onclick="toggleDrawerMenu()">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
+        <a class="header__logo" href="/">
+            Rese
+        </a>
+        <!-- ハンバーガーメニューとドロワーメニュー -->
+        <div class="menu-icon" id="hamburger-menu" onclick="toggleDrawerMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
     </header>
 
