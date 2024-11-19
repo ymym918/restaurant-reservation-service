@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'test',
             'email' => 'test@example.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('0000'),
+            'password' => bcrypt('00000000'),
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
