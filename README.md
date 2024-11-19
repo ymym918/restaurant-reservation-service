@@ -1,6 +1,7 @@
 # restaurant-reservation-service
 # 飲食店予約システム
 Reseは飲食店の予約システムです。ログイン後、店舗の予約やお気に入りを追加できます。</br>
+![alt text](<スクリーンショット 2024-11-19 18.03.53.png>)
 ## 作成した目的
 実践に近い開発経験をつむため作成しました。
 ## アプリケーションURL
@@ -13,13 +14,11 @@ Reseは飲食店の予約システムです。ログイン後、店舗の予約�
 - Laravel 8.x
 - MySQL 8.x
 - laravel-fortify
-</br>
 ## テーブル設計
-</br>
+![alt text](Rese_テーブル設計書.png)
 ## ER図
-</br>
+![alt text](Rese_ER図.png)
 ## 環境構築
-</br>
 **Dockerビルド**
 1. `git clone https://github.com/ymym918/restaurant-reservation-service`
 2. DockerDesktopアプリを立ち上げる
