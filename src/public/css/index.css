@@ -19,7 +19,7 @@
     display: flex;
     width: 40%;
     margin-top: -50px;
-    margin-left: 1030px;
+    margin-left: 840px;
 }
 
 /* 各選択肢（都道府県、ジャンル）のスタイル */
@@ -51,15 +51,14 @@ header button {
 /* 飲食店カード全体スタイル */
 .grid-container {
     display: grid;
-    gap: 25px;
+    gap: 20px;
     padding: 30px;
     grid-template-columns: repeat(4, 1fr);  /* 横4列に固定 */
-    margin-top: 30px;
 }
 
 .card {
-    width: 100%;
-    height: 100%;
+    width: 350px;
+    height: 350px;
     background-color: #fff;
     border-radius: 7px;
     overflow: hidden;
@@ -68,7 +67,7 @@ header button {
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover; /* 画像をカードに収める */
 }
 
@@ -87,6 +86,7 @@ header button {
 .card-info p {
     font-size: 14px;
     margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .card-info a {
@@ -96,7 +96,7 @@ header button {
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .card-info a:hover {
@@ -108,7 +108,7 @@ header button {
     cursor: pointer;
     font-size: 40px;
     transition: color 0.3s ease; /* 色の変化をスムーズに */
-    margin-left: 190px;
+    margin-left: 230px;
 }
 
 /* お気に入り登録されている場合 (赤いハート) */
