@@ -37,7 +37,7 @@ class RestaurantController extends Controller
         if (!Auth::check()) {
 
         // 会員登録画面にリダイレクト
-            return redirect()->route('register');
+            return redirect()->route('register.index');
         }
 
         // 認証されている場合

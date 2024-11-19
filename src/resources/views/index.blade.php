@@ -49,6 +49,7 @@
                 <h2>{{ $restaurant->name }}</h2>
                 <p>#{{ $restaurant->prefecture->name }} #{{ $restaurant->genre->name }}</p>
                 <a href="{{ route('restaurant.detail', $restaurant->id) }}">詳しくみる</a>
+                <!-- お気に入り機能 -->
                 <span class="favorite">
                     @if(Auth::check())
                     <!-- ログインしている場合はクリック可能 -->
