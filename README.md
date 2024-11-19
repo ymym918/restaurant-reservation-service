@@ -15,8 +15,7 @@ Reseは飲食店の予約システムです。ログイン後、店舗の予約�
 - MySQL 8.x
 - laravel-fortify
 ## テーブル設計
-![alt text](Rese_テーブル設計書(1).png)
-![alt text](Rese_テーブル設計書(2).png)
+![alt text](<Atte  [ユースケース図] - テーブル設計(飲食店) (1).png>)
 ## ER図
 ![alt text](Rese_ER図.png)
 ## 環境構築
