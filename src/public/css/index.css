@@ -5,7 +5,6 @@
 
 /* 検索結果該当なしの時のアラート */
 .alert {
-    position: fixed;
     top: 150px;
     left: 60px;
     padding: 10px;
@@ -45,6 +44,7 @@ header input[type="text"] {
 
 /* 検索ボタン(非表示設定) */
 header button {
+    position: fixed;
     display: none;
 }
 
