@@ -1,10 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-body {
-    background-color: #f5f5f5;
+    box-sizing: border-box;
 }
 
 .header__wrap {
@@ -14,10 +11,9 @@ body {
     color: #fff;
     height: 50px;
     width: 420px;
-    border-radius: 3px;
+    border-radius: 3px 3px 0 0;  /* 上部の角だけ丸くする */
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
-    margin-top: 100px;
-    margin-left: 700px;
+    margin: 70px auto 0;    /* 左右中央揃え */
 }
 
 .header__text {
@@ -25,22 +21,37 @@ body {
 }
 
 .form__wrap {
-    height: 210px;
+    height: 220px;
     width: 420px;
-    padding: 13px;
+    padding: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     background-color: #fff;
-    border-radius: 4px;
-    margin-left: 700px;
+    border-radius: 0 0 3px 3px;  /* 下部の角だけ丸くする */
+    margin: 0 auto;  /* 左右中央揃え */
+    margin-top: 0px;
+}
+
+.form__group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* 各項目の間隔を広げる */
+}
+
+.form__group i {
+    font-size: 20px;
+    color: #555;
+    margin-right: 10px;   /* アイコンと入力フィールドの間隔 */
+    width: 30px;          /* アイコンを左端に揃えるための幅 */
+    text-align: center;   /* アイコンを中央揃え */
 }
 
 .form__input {
-    width: 85%;
-    padding: 10px;
+    width: 100%;          /* フレックスボックスに対応するため調整 */
     border: none;
+    outline: none;
     border-bottom: 1px solid #ccc;
+    padding: 3px;
     font-size: 15px;
-    margin-left: 45px;
 }
 
 .form__input-button {
@@ -51,7 +62,7 @@ body {
     width: 80px;
     cursor: pointer;
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-left: 300px;
 }
 
@@ -62,5 +73,6 @@ body {
 .form__error {
     color: red;
     font-size: 15px;
-    text-align: end;
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
 }

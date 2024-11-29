@@ -17,9 +17,9 @@
 /* 検索フォーム全体 */
 .search-form {
     display: flex;
-    width: 40%;
-    margin-top: -50px;
-    margin-left: 840px;
+    position: absolute;
+    top: 55px;
+    right: 30px;
 }
 
 /* 各選択肢（都道府県、ジャンル）のスタイル */
@@ -52,13 +52,13 @@ header button {
 .grid-container {
     display: grid;
     gap: 20px;
-    padding: 30px;
     grid-template-columns: repeat(4, 1fr);  /* 横4列に固定 */
+    margin-top: 30px;
 }
 
 .card {
-    width: 350px;
-    height: 350px;
+    width: 100%;
+    height: 100%;
     background-color: #fff;
     border-radius: 7px;
     overflow: hidden;
@@ -74,6 +74,7 @@ header button {
 .card-info {
     padding: 15px;
     padding-bottom: 25px;
+    position: relative;  /* ハートマークの基準点を設定 */
 }
 
 .card-info h2 {
@@ -108,7 +109,10 @@ header button {
     cursor: pointer;
     font-size: 40px;
     transition: color 0.3s ease; /* 色の変化をスムーズに */
-    margin-left: 230px;
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    font-size: 40px;
 }
 
 /* お気に入り登録されている場合 (赤いハート) */

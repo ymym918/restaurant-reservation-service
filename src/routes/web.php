@@ -7,6 +7,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
 
 //飲食店一覧ページ表示
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
@@ -60,3 +61,10 @@ Route::post('/like/{restaurantId}', [FavoriteController::class, 'addFavorite'])-
 
 // お気に入りの削除
 Route::delete('/like/{restaurantId}', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
+
+// 評価情報の取得
+Route::get('reviews/{reservation_id}/create', [ReviewController::class, 'create'])->name('reviews.create');
+
+// 評価情報の保存
+Route::post('/reviews/store/{reservation_id}', [ReviewController::class, 'store'])->name('reviews.store');
+

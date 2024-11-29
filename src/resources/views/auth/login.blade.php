@@ -19,7 +19,10 @@
     <form class="form__wrap" action="/login" method="post">
         @csrf
         <div class="form__item">
-            <input class="form__input" type="email" name="email" placeholder="Email" >
+            <div class="icon__wrap">
+                <i class="fas fa-user"></i>
+                <input class="form__input" type="email" name="email" placeholder="Email" >
+            </div>
         </div>
         <div class="error__item">
             @error('email')
@@ -27,13 +30,16 @@
             @enderror
         </div>
         <div class="form__item">
-            <input class="form__input password__input" type="password" name="password" placeholder="Password">
+            <div class="icon__wrap">
+                <i class="fas fa-lock"></i>
+                <input class="form__input password__input" type="password" name="password" placeholder="Password">
+            </div>
         </div>
         <div class="error__item">
             @error('password')
                 <span class="error__message">{{ $message }}</span>
             @enderror
-            </div>
+        </div>
         <div class="form__item form__item-button">
             <button class="form__input-button" type="submit">ログイン</button>
         </div>
