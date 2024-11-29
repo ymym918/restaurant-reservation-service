@@ -19,7 +19,14 @@
     display: flex;
     position: absolute;
     top: 55px;
-    right: 30px;
+    right: 0; /* 右端に配置 */
+    width:  50%;
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        width: 55%;
+    }
 }
 
 /* 各選択肢（都道府県、ジャンル）のスタイル */
@@ -29,7 +36,15 @@ header select {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 30%;
-    min-width: 150px; /* 最小幅を指定 */
+    min-width: 150px;
+}
+
+@media (max-width: 768px) {
+    header select
+    {
+        width: 20%;
+        min-width: 100px;
+    }
 }
 
 /* キーワード検索の入力フィールドのスタイル */
@@ -42,6 +57,15 @@ header input[type="text"] {
     min-width: 200px;
 }
 
+@media (max-width: 768px) {
+    header input[type="text"] {
+        padding: 10px;
+        width: 45%;
+        min-width: 130px;
+}
+}
+
+
 /* 検索ボタン(非表示設定) */
 header button {
     position: fixed;
@@ -52,8 +76,15 @@ header button {
 .grid-container {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(4, 1fr);  /* 横4列に固定 */
+    grid-template-columns: repeat(4, 1fr);  /* 横4列 */
     margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);  /* 横2列 */
+        gap: 15px;  /* カード間の余白を少し狭く */
+    }
 }
 
 .card {
@@ -64,6 +95,7 @@ header button {
     overflow: hidden;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
+
 
 .card img {
     width: 100%;
