@@ -187,13 +187,12 @@
 
 /* 「＜」ボタン */
 .title-container a {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
   /* タイトルのフォントサイズを調整 */
 .title-container h2 {
     font-size: 1.5rem;
-    margin-top: 4px;
     margin-left: 0;          /* 左のマージンをリセット */
 }
 
