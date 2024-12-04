@@ -56,17 +56,15 @@
                     @error('number_of_people')
                     <div class="error">{{ $message }}</div>
                     @enderror
-
-                    <div class="button-container">
-                        <button type="submit">予約する</button>
-                    </div>
-
                     {{-- 確認セクション --}}
                     <div class="reservation-summary">
                         <p><label for="shop_name">Shop</label>{{ $restaurant->name }}</p>
                         <p><label for="confirm_date">Date</label><span id="confirm_date" class="confirmation-spacing"></span></p>
                         <p><label for="confirm_time">Time</label><span id="confirm_time" class="confirmation-spacing"></span></p>
                         <p><label for="confirm_people">Number</label><span id="confirm_people" class="confirmation-spacing"></span></p>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">予約する</button>
                     </div>
                 </form>
             </div>

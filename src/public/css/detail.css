@@ -3,11 +3,6 @@
     padding: 0;
 }
 
-body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-}
-
 .content-wrapper {
     display: flex;
     align-items: flex-start;
@@ -18,7 +13,6 @@ body {
 .main-content {
     flex: 1;
     max-width: 600px;
-    margin-top: 60px;
 }
 
 /* お店のタイトルと「＜」ボタンの位置調整 */
@@ -41,15 +35,12 @@ body {
     width: 35px;
     height: 35px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
-    margin-top: -30px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 /* お店のタイトル */
 .title-container h2 {
     font-size: 1.9rem;
-    margin-top: -30px;
-    margin-bottom: 20px;
     margin-left: 15px;
 }
 
@@ -58,6 +49,7 @@ body {
     width: 100%;
     height: auto;
     object-fit: cover;
+    margin-top: 20px;
     margin-bottom: 25px;
 }
 
@@ -69,14 +61,14 @@ body {
 
 /* 右側の予約フォーム */
 .reservation-form {
-    display: inline-block;
     background-color: #3267f9;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     padding: 40px;
-    height: 680px;
+    height: 650px;
     width: 630px;
     color: white;
     border-radius: 6px;
+    margin-top: -70px;
     margin-left: 100px;
 }
 
@@ -131,7 +123,6 @@ body {
     height:190px;
     width: 500px;
     background-color: rgba(255, 255, 255, 0.2);
-    margin-top: -390px;
     padding: 25px;
     border-radius: 5px;
 }
@@ -155,14 +146,14 @@ body {
 .button-container button {
     width: 630px;
     padding: 15px;
-    margin-left: -40px;
-    margin-top: 350px;
     background-color: #1d4ed8;
     border: none;
     border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 127px;
+    margin-left: -40px;
 }
 
 .error {
@@ -170,3 +161,90 @@ body {
     font-size: 15px;
     margin-top: -10px;
 }
+
+
+/* 768px以下の画面サイズに対応するスタイル */
+@media (max-width: 768px) {
+
+  /* コンテンツ全体を縦並びに変更 */
+.content-wrapper {
+    flex-direction: column;  /* 縦方向に並べる */
+    padding: 10px;           /* パディングを小さくする */
+}
+
+  /* お店詳細部分をフル幅に */
+.main-content {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+/* タイトルとボタン */
+.title-container {
+    display: flex;
+    align-items: center;        /* 縦方向の中央揃え */
+    gap: 15px;                  /* ボタンとタイトルの間隔 */
+}
+
+/* 「＜」ボタン */
+.title-container a {
+    margin-bottom: 20px;
+}
+
+  /* タイトルのフォントサイズを調整 */
+.title-container h2 {
+    font-size: 1.5rem;
+    margin-top: 4px;
+    margin-left: 0;          /* 左のマージンをリセット */
+}
+
+.title-container a {
+    margin-top: 0;           /* 上のマージンをリセット */
+}
+
+  /* レストラン画像 */
+.main-content img {
+    margin-bottom: 15px;     /* 余白を小さく */
+}
+
+  /* ハッシュタグのフォントサイズを調整 */
+.main-content p {
+    font-size: 0.9rem;       /* 小さめのフォントサイズに */
+}
+
+  /* 予約フォームをフル幅に */
+.reservation-form {
+    display: flex;
+    flex-direction: column;   /* 縦並びにする */
+    justify-content: space-between; /* ボタンを下に配置 */
+    width: 100%;             /* 幅を100%に */
+    padding: 20px;           /* パディングを小さく */
+    margin: 20px 0;          /* 上下のマージンを調整 */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+  /* 予約フォーム内の入力フィールド */
+.reservation-form input, .reservation-form select {
+    width: 100%;             /* フル幅に */
+}
+
+  /* 予約フォームの確認項目 */
+.reservation-summary {
+    width: 100%;             /* 幅を100%に */
+    margin-top: 20px;        /* マージンを調整 */
+    height: auto;            /* 高さを自動調整 */
+}
+
+.button-container {
+    width: 100%;
+}
+
+  /* 「予約する」ボタン */
+.button-container button {
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+}
+
