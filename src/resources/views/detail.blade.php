@@ -96,6 +96,10 @@
             confirmPeople.textContent = numberOfPeople.value + '人';
         });
     });
+
+    // 今日の日付を取得してフォーマット(予約年月日の選択を今日以降に限定)
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('reservation_date').setAttribute('min', today);
     </script>
 </body>
 
