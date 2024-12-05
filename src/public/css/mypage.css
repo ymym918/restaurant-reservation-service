@@ -53,7 +53,7 @@
 .mypage-container {
     display: flex;
     margin-bottom: 50px;
-    margin-left: 250px;
+    margin-left: 50px;
 }
 
 .reservation-card {
@@ -118,7 +118,7 @@
     cursor: pointer;
 }
 
-/* 「変更する」のボタン */
+/* 「変更する」(「レビューを書く」)のボタン */
 .reservation-card a {
     position: absolute;
     top: 180px; /* 上からの位置調整 */
@@ -279,6 +279,65 @@
 .btn-secondary {
     background-color: gray;
     color: white;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    /* ヘッダー部のユーザー名 */
+    .header__text {
+        font-size: 25px;
+    }
+
+    .mypage-container {
+        margin: auto;
+    }
+
+    /* 予約カード */
+    .reservation-section h2 {
+        font-size: 20px;
+    }
+
+    .reservation-card {
+        height: 260px;
+        width: 350px;
+    }
+
+    .reservation-title {
+        margin-left: 10px;
+    }
+
+    .reservation-card p {
+        font-size: 15px;
+    }
+
+    /* 「変更する」(「レビューを書く」)のボタン */
+    .reservation-card a {
+        top: 185px; /* 上からの位置調整 */
+        right: 25px; /* 右からの位置調整 */
+    }
+
+    /* お気に入り店舗セクション */
+    .favorites-section {
+        margin: 5px; /* 予約とお気に入りの間の調整 */
+    }
+
+    .favorites-section h2 {
+        font-size: 20px;
+    }
+
+    .favorites-section p {
+        margin-left: 20px;
+    }
+
+    .favorite-cards {
+        grid-template-columns: 1fr;  /* 1列表示に変更 */
+    }
+
+    .favorite-card {
+        width: 330px;
+        height: 330px;
+        margin: 5px; /* カード同士の間隔を広げる */
+    }
 }
 
 
