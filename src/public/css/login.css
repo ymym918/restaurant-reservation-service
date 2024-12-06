@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+/* ページ全体の中央揃え */
+body {
+    justify-content: center;
+    align-items: center;
+}
+
 .header__wrap {
     display: flex;
     align-items: center;
