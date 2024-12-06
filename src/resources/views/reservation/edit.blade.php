@@ -60,16 +60,15 @@
                     <div class="error">{{ $message }}</div>
                     @enderror
 
-                    <div class="button-container">
-                        <button type="submit">変更する</button>
-                    </div>
-
                     {{-- 確認セクション--}}
                     <div class="reservation-summary">
                         <p><label for="shop_name">Shop</label>{{ $restaurant->name }}</p>
                         <p><label for="confirm_date">Date</label><span id="confirm_date" class="confirmation-spacing">{{ $reservation->reservation_date }}</span></p>
                         <p><label for="confirm_time">Time</label><span id="confirm_time" class="confirmation-spacing">{{ $reservation->reservation_time }}</span></p>
                         <p><label for="confirm_people">Number</label><span id="confirm_people" class="confirmation-spacing">{{ $reservation->number_of_people }}人</span></p>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">変更する</button>
                     </div>
                 </form>
             </div>
@@ -99,6 +98,10 @@
             confirmPeople.textContent = numberOfPeople.value + '人';
         });
     });
+
+    // 今日の日付を取得してフォーマット(予約年月日の選択を今日以降に限定)
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('reservation_date').setAttribute('min', today);
     </script>
 </body>
 

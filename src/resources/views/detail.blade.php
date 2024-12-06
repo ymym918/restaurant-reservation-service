@@ -24,6 +24,8 @@
                 <h2>予約</h2>
                 <form action="{{ route('reservation.store') }}" method="post">
                     @csrf
+
+                    {{-- 飲食店名 --}}
                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
 
                     {{-- 予約年月日 --}}
@@ -56,6 +58,7 @@
                     @error('number_of_people')
                     <div class="error">{{ $message }}</div>
                     @enderror
+
                     {{-- 確認セクション --}}
                     <div class="reservation-summary">
                         <p><label for="shop_name">Shop</label>{{ $restaurant->name }}</p>
