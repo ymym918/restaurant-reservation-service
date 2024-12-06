@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+/* ページ全体の中央揃え */
+body {
+    justify-content: center; /* 水平方向に中央揃え */
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+/* ヘッダー部分 */
 .header__wrap {
     display: flex;
     align-items: center;
@@ -11,26 +18,27 @@
     color: #fff;
     height: 50px;
     width: 420px;
-    border-radius: 3px 3px 0 0;  /* 上部の角だけ丸くする */
+    border-radius: 3px 3px 0 0;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
-    margin: 70px auto 0;    /* 左右中央揃え */
+    margin: 70px auto 0;    /* 上部に余白、左右中央揃え */
 }
 
 .header__text {
     margin-left: 20px;
 }
 
+/* フォーム全体のスタイル */
 .form__wrap {
-    height: 220px;
+    height: auto;
     width: 420px;
     padding: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     background-color: #fff;
-    border-radius: 0 0 3px 3px;  /* 下部の角だけ丸くする */
-    margin: 0 auto;  /* 左右中央揃え */
-    margin-top: 0px;
+    border-radius: 0 0 3px 3px; /* 下部の角だけ丸くする */
+    margin: 0 auto; /* 左右中央揃え */
 }
 
+/* フォームの入力グループ */
 .form__group {
     display: flex;
     align-items: center;
@@ -40,13 +48,14 @@
 .form__group i {
     font-size: 20px;
     color: #555;
-    margin-right: 10px;   /* アイコンと入力フィールドの間隔 */
-    width: 30px;          /* アイコンを左端に揃えるための幅 */
-    text-align: center;   /* アイコンを中央揃え */
+    margin-right: 10px; /* アイコンと入力フィールドの間隔 */
+    width: 30px; /* アイコンを左端に揃えるための幅 */
+    text-align: center; /* アイコンを中央揃え */
 }
 
+/* 入力フィールドのスタイル */
 .form__input {
-    width: 100%;          /* フレックスボックスに対応するため調整 */
+    width: 100%; /* フレックスボックスに対応するため調整 */
     border: none;
     outline: none;
     border-bottom: 1px solid #ccc;
@@ -54,6 +63,7 @@
     font-size: 15px;
 }
 
+/* ボタンのスタイル */
 .form__input-button {
     background-color: #3267f9;
     color: white;
@@ -70,9 +80,9 @@
     background-color: #336ab3;
 }
 
+/* エラーメッセージのスタイル */
 .form__error {
     color: red;
     font-size: 15px;
-    display: flex;
-    justify-content: flex-end; /* 右寄せ */
+    text-align: right; /* 右寄せ */
 }
